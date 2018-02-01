@@ -6,10 +6,60 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		07A224E7200BE2C6000866C7 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 07A224E8200BE2C6000866C7 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				07A224ED200BE2D1000866C7 /* Multi-Platform Bind */,
+			);
+			dependencies = (
+				07A224F9200BE347000866C7 /* PBXTargetDependency */,
+				07A224EC200BE2CD000866C7 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		07A224D8200BD301000866C7 /* StatioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224D7200BD301000866C7 /* StatioKit.m */; };
+		0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0725CFD020179F2B00701B89 /* SKProcessorInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0725CFD120179F2B00701B89 /* SKProcessorInfo.m */; };
+		072CC9C420110B4A00C1A87E /* SKMemoryInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		072CC9C520110B4A00C1A87E /* SKMemoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */; };
 		07A224D9200BD301000866C7 /* StatioKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07A224D6200BD301000866C7 /* StatioKit.h */; };
+		07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224E0200BD32E000866C7 /* SKDeviceInfo.m */; };
+		07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224DF200BD32E000866C7 /* SKDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A224FA200BE3FC000866C7 /* ModelNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A224E2200BE18B000866C7 /* ModelNames.plist */; };
+		07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A224FE200BEBBA000866C7 /* NSBundle+StatioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */; };
+		07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2255C200C20A2000866C7 /* SKCarrierInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A2255F200C20A2000866C7 /* SKCarrierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A2255D200C20A2000866C7 /* SKCarrierInfo.m */; };
+		07A2256A200C2E4F000866C7 /* SKNetworkInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A22568200C2E4F000866C7 /* SKNetworkInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A22569200C2E4F000866C7 /* SKNetworkInfo.m */; };
+		07A22571200C453B000866C7 /* route.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A22570200C453B000866C7 /* route.h */; };
+		07C783AD2020ECBA00E39E3B /* SKDeviceMotionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07C783AE2020ECBA00E39E3B /* SKDeviceMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */; };
+		07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		07A224EB200BE2CD000866C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A224CB200BD301000866C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07A224D2200BD301000866C7;
+			remoteInfo = StatioKit;
+		};
+		07A224F8200BE347000866C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A224CB200BD301000866C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07A224F1200BE300000866C7;
+			remoteInfo = StatioKitResources;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		07A224D1200BD301000866C7 /* CopyFiles */ = {
@@ -25,13 +75,40 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0725CFD020179F2B00701B89 /* SKProcessorInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKProcessorInfo.h; sourceTree = "<group>"; };
+		0725CFD120179F2B00701B89 /* SKProcessorInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProcessorInfo.m; sourceTree = "<group>"; };
+		072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMemoryInfo.h; sourceTree = "<group>"; };
+		072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKMemoryInfo.m; sourceTree = "<group>"; };
 		07A224D3200BD301000866C7 /* libStatioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStatioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A224D6200BD301000866C7 /* StatioKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatioKit.h; sourceTree = "<group>"; };
-		07A224D7200BD301000866C7 /* StatioKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatioKit.m; sourceTree = "<group>"; };
+		07A224DF200BD32E000866C7 /* SKDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKDeviceInfo.h; sourceTree = "<group>"; };
+		07A224E0200BD32E000866C7 /* SKDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKDeviceInfo.m; sourceTree = "<group>"; };
+		07A224E2200BE18B000866C7 /* ModelNames.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModelNames.plist; sourceTree = "<group>"; };
+		07A224E5200BE27D000866C7 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		07A224F2200BE300000866C7 /* StatioKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatioKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		07A224F4200BE300000866C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+StatioKit.h"; sourceTree = "<group>"; };
+		07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+StatioKit.m"; sourceTree = "<group>"; };
+		07A2255C200C20A2000866C7 /* SKCarrierInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKCarrierInfo.h; sourceTree = "<group>"; };
+		07A2255D200C20A2000866C7 /* SKCarrierInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKCarrierInfo.m; sourceTree = "<group>"; };
+		07A22568200C2E4F000866C7 /* SKNetworkInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKNetworkInfo.h; sourceTree = "<group>"; };
+		07A22569200C2E4F000866C7 /* SKNetworkInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKNetworkInfo.m; sourceTree = "<group>"; };
+		07A22570200C453B000866C7 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKDeviceMotionManager.h; sourceTree = "<group>"; };
+		07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKDeviceMotionManager.m; sourceTree = "<group>"; };
+		07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAccelerometerManager.h; sourceTree = "<group>"; };
+		07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAccelerometerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		07A224D0200BD301000866C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07A224EF200BE300000866C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				07A224D5200BD301000866C7 /* StatioKit */,
+				07A224F3200BE300000866C7 /* StatioKitResources */,
 				07A224D4200BD301000866C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				07A224D3200BD301000866C7 /* libStatioKit.a */,
+				07A224F2200BE300000866C7 /* StatioKit.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,13 +139,58 @@
 		07A224D5200BD301000866C7 /* StatioKit */ = {
 			isa = PBXGroup;
 			children = (
+				07A22570200C453B000866C7 /* route.h */,
+				07A224E5200BE27D000866C7 /* module.modulemap */,
 				07A224D6200BD301000866C7 /* StatioKit.h */,
-				07A224D7200BD301000866C7 /* StatioKit.m */,
+				07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */,
+				07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */,
+				07A224DF200BD32E000866C7 /* SKDeviceInfo.h */,
+				07A224E0200BD32E000866C7 /* SKDeviceInfo.m */,
+				07A2255C200C20A2000866C7 /* SKCarrierInfo.h */,
+				07A2255D200C20A2000866C7 /* SKCarrierInfo.m */,
+				07A22568200C2E4F000866C7 /* SKNetworkInfo.h */,
+				07A22569200C2E4F000866C7 /* SKNetworkInfo.m */,
+				072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */,
+				072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */,
+				0725CFD020179F2B00701B89 /* SKProcessorInfo.h */,
+				0725CFD120179F2B00701B89 /* SKProcessorInfo.m */,
+				07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */,
+				07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */,
+				07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */,
+				07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */,
 			);
 			path = StatioKit;
 			sourceTree = "<group>";
 		};
+		07A224F3200BE300000866C7 /* StatioKitResources */ = {
+			isa = PBXGroup;
+			children = (
+				07A224F4200BE300000866C7 /* Info.plist */,
+				07A224E2200BE18B000866C7 /* ModelNames.plist */,
+			);
+			path = StatioKitResources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		07A224E3200BE1FE000866C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */,
+				07A2256A200C2E4F000866C7 /* SKNetworkInfo.h in Headers */,
+				07A22571200C453B000866C7 /* route.h in Headers */,
+				072CC9C420110B4A00C1A87E /* SKMemoryInfo.h in Headers */,
+				07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */,
+				0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */,
+				07C783AD2020ECBA00E39E3B /* SKDeviceMotionManager.h in Headers */,
+				07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */,
+				07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		07A224D2200BD301000866C7 /* StatioKit */ = {
@@ -76,6 +200,8 @@
 				07A224CF200BD301000866C7 /* Sources */,
 				07A224D0200BD301000866C7 /* Frameworks */,
 				07A224D1200BD301000866C7 /* CopyFiles */,
+				07A224E3200BE1FE000866C7 /* Headers */,
+				07A224E6200BE295000866C7 /* Build Framework */,
 			);
 			buildRules = (
 			);
@@ -85,6 +211,23 @@
 			productName = StatioKit;
 			productReference = 07A224D3200BD301000866C7 /* libStatioKit.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		07A224F1200BE300000866C7 /* StatioKitResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07A224F5200BE300000866C7 /* Build configuration list for PBXNativeTarget "StatioKitResources" */;
+			buildPhases = (
+				07A224EE200BE300000866C7 /* Sources */,
+				07A224EF200BE300000866C7 /* Frameworks */,
+				07A224F0200BE300000866C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StatioKitResources;
+			productName = StatioKitResources;
+			productReference = 07A224F2200BE300000866C7 /* StatioKit.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -96,6 +239,14 @@
 				ORGANIZATIONNAME = "Varun Santhanam";
 				TargetAttributes = {
 					07A224D2200BD301000866C7 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					07A224E7200BE2C6000866C7 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					07A224F1200BE300000866C7 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -114,20 +265,91 @@
 			projectRoot = "";
 			targets = (
 				07A224D2200BD301000866C7 /* StatioKit */,
+				07A224F1200BE300000866C7 /* StatioKitResources */,
+				07A224E7200BE2C6000866C7 /* Framework */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07A224F0200BE300000866C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07A224FA200BE3FC000866C7 /* ModelNames.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07A224E6200BE295000866C7 /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework\"\n\n# Create Directory for Actual Headers Location for Version A\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Symbolically Link the Headers to their Parse Directory\nln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\nln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\nln -sfh \"Versions/Current/${PRODUCT_NAME}\" \\\n\"${FRAMEWORK_LOCN}/${PRODUCT_NAME}\"\n\n# Copy Public Headers Into Their Directory\ncp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Create Module Directory\nmkdir -p \"${FRAMEWORK_LOCN}/Modules\"\n\n# Copy Module Map\ncp -f \"${SRCROOT}/${PRODUCT_NAME}/module.modulemap\" \"${FRAMEWORK_LOCN}/Modules/\"";
+		};
+		07A224ED200BE2D1000866C7 /* Multi-Platform Bind */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Multi-Platform Bind";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set +u\n\nif [[ $SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SCRIPT_RUNNING=1\n\n# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nSTATIC_LIB=\"lib${PROJECT_NAME}.a\" # Product of other target\nFRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORK_NAME}.framework\" # Product of script in other target build phase\nOUTPUT_DIR=${PROJECT_DIR}/Release\n\n# Encapsulate Xcode Build Process\nfunction build_static_library_and_framework {\n    \n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${PROJECT_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n    \n}\n\n# Encapsulate Lipo\nfunction merge_binaries {\n    \n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n    \n}\n\n# 1 - Get SDK to determine platform (iphoneos or iphonesimulator)\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nSDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Get Opposite Platform (iphonesimulator --> iphoneos, iphoneos --> iphonesimulator)\nif [ \"$SDK_PLATFORM\" == \"iphoneos\" ]; then\nOTHER_PLATFORM=iphonesimulator\nelse\nOTHER_PLATFORM=iphoneos\nfi\n\n# 3 - Get the build directories\nCURRENT_DIR=${BUILD_DIR}/${CONFIGURATION}-${SDK_PLATFORM}\nOTHER_DIR=${BUILD_DIR}/${CONFIGURATION}-${OTHER_PLATFORM}\n\n# 4 - Build Opposite Platform\nbuild_static_library_and_framework \"${OTHER_PLATFORM}\"\n\n# 5 - Copy Framework Structure\nrm -rf \"${OUTPUT_DIR}\"\nmkdir -p \"${OUTPUT_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-${SDK_PLATFORM}/${PROJECT_NAME}.framework\" \"${OUTPUT_DIR}/${PROJECT_NAME}.framework\"\n\n# 6 - Merge Into /Release\nmerge_binaries \"${CURRENT_DIR}/${STATIC_LIB}\" \"${OTHER_DIR}/${STATIC_LIB}\" \"${OUTPUT_DIR}/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-${SDK_PLATFORM}/${PROJECT_NAME}.bundle\" \"${OUTPUT_DIR}/${PROJECT_NAME}.bundle\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07A224CF200BD301000866C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A224D8200BD301000866C7 /* StatioKit.m in Sources */,
+				07A2255F200C20A2000866C7 /* SKCarrierInfo.m in Sources */,
+				072CC9C520110B4A00C1A87E /* SKMemoryInfo.m in Sources */,
+				0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */,
+				07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */,
+				07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */,
+				07A224FE200BEBBA000866C7 /* NSBundle+StatioKit.m in Sources */,
+				07C783AE2020ECBA00E39E3B /* SKDeviceMotionManager.m in Sources */,
+				07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07A224EE200BE300000866C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07A224EC200BE2CD000866C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07A224D2200BD301000866C7 /* StatioKit */;
+			targetProxy = 07A224EB200BE2CD000866C7 /* PBXContainerItemProxy */;
+		};
+		07A224F9200BE347000866C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07A224F1200BE300000866C7 /* StatioKitResources */;
+			targetProxy = 07A224F8200BE347000866C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		07A224DA200BD301000866C7 /* Debug */ = {
@@ -238,10 +460,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -250,11 +476,67 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		07A224E9200BE2C6000866C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07A224EA200BE2C6000866C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		07A224F6200BE300000866C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				INFOPLIST_FILE = StatioKitResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.varunsanthanam.StatioKitResources;
+				PRODUCT_NAME = StatioKit;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		07A224F7200BE300000866C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = NO;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				INFOPLIST_FILE = StatioKitResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.varunsanthanam.StatioKitResources;
+				PRODUCT_NAME = StatioKit;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -275,6 +557,24 @@
 			buildConfigurations = (
 				07A224DD200BD301000866C7 /* Debug */,
 				07A224DE200BD301000866C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07A224E8200BE2C6000866C7 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07A224E9200BE2C6000866C7 /* Debug */,
+				07A224EA200BE2C6000866C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07A224F5200BE300000866C7 /* Build configuration list for PBXNativeTarget "StatioKitResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07A224F6200BE300000866C7 /* Debug */,
+				07A224F7200BE300000866C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

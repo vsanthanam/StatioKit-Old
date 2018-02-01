@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StatioKit : NSObject
+#import <StatioKit/NSBundle+StatioKit.h>
 
-@end
+#import <StatioKit/SKDeviceInfo.h>
+#import <StatioKit/SKCarrierInfo.h>
+#import <StatioKit/SKNetworkInfo.h>
+#import <StatioKit/SKMemoryInfo.h>
+#import <StatioKit/SKProcessorInfo.h>
+
+#import <StatioKit/SKDeviceMotionManager.h>
+#import <StatioKit/SKAccelerometerManager.h>
