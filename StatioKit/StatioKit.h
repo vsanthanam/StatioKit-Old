@@ -15,6 +15,7 @@
 #import <StatioKit/SKNetworkInfo.h>
 #import <StatioKit/SKMemoryInfo.h>
 #import <StatioKit/SKProcessorInfo.h>
+#import <StatioKit/SKBatteryInfo.h>
 
 #import <StatioKit/SKDeviceMotionManager.h>
 #import <StatioKit/SKAccelerometerManager.h>
