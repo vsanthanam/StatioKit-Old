@@ -20,6 +20,12 @@
 @implementation SKDeviceMotionManager
 
 @synthesize delegate = _delegate;
+@synthesize attitudeSample = _attitudeSample;
+@synthesize unbiasedRotationRateSample = _unbiasedRotationRateSample;
+@synthesize gravitySample = _gravitySample;
+@synthesize userAccelerationSample = _userAccelerationSample;
+@synthesize unbiasedMagneticFieldSample = _unbiasedMagneticFieldSample;
+@synthesize headingSample = _headingSample;
 
 @synthesize deviceMotionQueue = _deviceMotionQueue;
 @synthesize internalMotionManager = _internalMotionManager;
@@ -41,7 +47,6 @@
     if (!_internalMotionManager) {
         
         _internalMotionManager = [[CMMotionManager alloc] init];
-        _internalMotionManager.deviceMotionUpdateInterval = 0.01f;
         
     }
     
@@ -73,8 +78,15 @@
 
 - (BOOL)startTracking {
     
+    return [self startTrackingWithUpdateFrequency:0.01f];
+    
+}
+
+- (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
+    
     if (!self.tracking && self.internalMotionManager.deviceMotionAvailable) {
         
+        self.internalMotionManager.deviceMotionUpdateInterval = frequency;
         self.deviceMotionQueue = [[NSOperationQueue alloc] init];
         
         CMDeviceMotionHandler handler = ^(CMDeviceMotion *deviceMotion, NSError *error) {
@@ -121,63 +133,99 @@
 
 - (void)_processMotionData:(CMDeviceMotion *)deviceMotion {
  
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveAttitudeWithRoll:pitch:yaw:atTimestamp:)]) {
+    SKAttitudeSample attitudeSample;
+    attitudeSample.timestamp = deviceMotion.timestamp;
+    attitudeSample.roll = deviceMotion.attitude.roll;
+    attitudeSample.pitch = deviceMotion.attitude.pitch;
+    attitudeSample.yaw = deviceMotion.attitude.yaw;
+    
+    _attitudeSample = attitudeSample;
+    
+    SKUnbiasedRotationRateSample unbiasedRotationRateSample;
+    unbiasedRotationRateSample.timestamp = deviceMotion.timestamp;
+    unbiasedRotationRateSample.x = deviceMotion.rotationRate.x;
+    unbiasedRotationRateSample.y = deviceMotion.rotationRate.y;
+    unbiasedRotationRateSample.z = deviceMotion.rotationRate.z;
+    
+    _unbiasedRotationRateSample = unbiasedRotationRateSample;
+    
+    SKGravitySample gravitySample;
+    gravitySample.timestamp = deviceMotion.timestamp;
+    gravitySample.x = deviceMotion.gravity.x;
+    gravitySample.y = deviceMotion.gravity.y;
+    gravitySample.z = deviceMotion.gravity.z;
+    
+    _gravitySample = gravitySample;
+    
+    SKUserAccelerationSample userAccelerationSample;
+    userAccelerationSample.timestamp = deviceMotion.timestamp;
+    userAccelerationSample.x = deviceMotion.userAcceleration.x;
+    userAccelerationSample.y = deviceMotion.userAcceleration.y;
+    userAccelerationSample.z = deviceMotion.userAcceleration.z;
+    
+    _userAccelerationSample = userAccelerationSample;
+    
+    SKUnbiasedMagneticFieldSample unbiasedMagneticFieldSample;
+    unbiasedMagneticFieldSample.timestamp = deviceMotion.timestamp;
+    unbiasedMagneticFieldSample.x = deviceMotion.magneticField.field.x;
+    unbiasedMagneticFieldSample.y = deviceMotion.magneticField.field.y;
+    unbiasedMagneticFieldSample.z = deviceMotion.magneticField.field.z;
+    unbiasedMagneticFieldSample.accuracy = sk_dm_mag_accuracy_from_mag_accuracy(deviceMotion.magneticField.accuracy);
+    
+    if (@available(iOS 11.0, *)) {
         
-        [self.delegate deviceMotionManager:self
-                didRecieveAttitudeWithRoll:deviceMotion.attitude.pitch
-                                     pitch:deviceMotion.attitude.pitch
-                                       yaw:deviceMotion.attitude.yaw atTimestamp:deviceMotion.timestamp];
+        SKHeadingSample headingSample;
+        
+        headingSample.timestamp = deviceMotion.timestamp;
+        headingSample.heading = deviceMotion.heading;
+     
+        _headingSample = headingSample;
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveRotationRateWithX:y:z:atTimestamp:)]) {
+    _unbiasedMagneticFieldSample = unbiasedMagneticFieldSample;
+
+    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveAttitudeSample:)]) {
         
         [self.delegate deviceMotionManager:self
-               didRecieveRotationRateWithX:deviceMotion.rotationRate.x
-                                         y:deviceMotion.rotationRate.y
-                                         z:deviceMotion.rotationRate.z
-                               atTimestamp:deviceMotion.timestamp];
+                  didRecieveAttitudeSample:self.attitudeSample];
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveGravityWithX:y:z:atTimestamp:)]) {
+    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveUnbiasedRotationRateSample:)]) {
         
         [self.delegate deviceMotionManager:self
-                    didRecieveGravityWithX:deviceMotion.gravity.x
-                                         y:deviceMotion.gravity.y
-                                         z:deviceMotion.gravity.z
-                               atTimestamp:deviceMotion.timestamp];
+      didRecieveUnbiasedRotationRateSample:self.unbiasedRotationRateSample];
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveUserAccelerationWithX:y:z:atTimestamp:)]) {
+    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveGravitySample:)]) {
         
         [self.delegate deviceMotionManager:self
-           didRecieveUserAccelerationWithX:deviceMotion.userAcceleration.x
-                                         y:deviceMotion.userAcceleration.y
-                                         z:deviceMotion.userAcceleration.z
-                               atTimestamp:deviceMotion.timestamp];
+                   didRecieveGravitySample:self.gravitySample];
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveUnbiasedMagneticField:y:z:accuracy:atTimestamp:)]) {
+    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveUserAccelerationSample:)]) {
         
         [self.delegate deviceMotionManager:self
-           didRecieveUnbiasedMagneticField:deviceMotion.magneticField.field.x
-                                         y:deviceMotion.magneticField.field.y
-                                         z:deviceMotion.magneticField.field.z
-                                  accuracy:sk_dm_mag_accuracy_from_mag_accuracy(deviceMotion.magneticField.accuracy)
-                               atTimestamp:deviceMotion.timestamp];
+          didRecieveUserAccelerationSample:self.userAccelerationSample];
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveHeading:atTimestamp:)]) {
+    if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveUnbiasedMagneticFieldSample:)]) {
         
-        if (@available(iOS 11.0, *)) {
-            
+        [self.delegate deviceMotionManager:self
+     didRecieveUnbiasedMagneticFieldSample:self.unbiasedMagneticFieldSample];
+        
+    }
+    
+    if (@available(iOS 11.0, *)) {
+        
+        if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveHeadingSample:)]) {
+        
             [self.delegate deviceMotionManager:self
-                             didRecieveHeading:deviceMotion.heading
-                                   atTimestamp:deviceMotion.timestamp];
+                       didRecieveHeadingSample:self.headingSample];
             
         }
         
@@ -196,7 +244,45 @@
     
 }
 
-#pragma mark - C Functions
+#pragma mark - Public C Functions
+
+NSString * NSStringFromSKAttitudeSample(SKAttitudeSample attidudeSample) {
+    
+    return [NSString stringWithFormat:@"attitude = (roll: %f, pitch = %f, yaw %f)", attidudeSample.roll, attidudeSample.pitch, attidudeSample.yaw];
+    
+}
+
+NSString * NSStringFromSKUnbiasedRotationRateSample(SKUnbiasedRotationRateSample unbiasedRotationRateSample) {
+    
+    return [NSString stringWithFormat:@"unbiased rotation rate = (%f, %f, %f)", unbiasedRotationRateSample.x, unbiasedRotationRateSample.y, unbiasedRotationRateSample.z];
+    
+}
+
+NSString * NSStringFromSKGravitySample(SKGravitySample gravitySample) {
+    
+    return [NSString stringWithFormat:@"gravity = (%f, %f, %f)", gravitySample.x, gravitySample.y, gravitySample.z];
+    
+}
+
+NSString * NSStringFromSKUserAccelerationSample(SKUserAccelerationSample userAccelerationSample) {
+    
+    return [NSString stringWithFormat:@"user acceleration = (%f, %f, %f)", userAccelerationSample.x, userAccelerationSample.y, userAccelerationSample.z];
+    
+}
+
+NSString * NSStringFromSKUnbiasedMagneticFieldSample(SKUnbiasedMagneticFieldSample unbiasedMagneticFieldSample) {
+    
+    return [NSString stringWithFormat:@"unbiased magnetic field = (%f, %f, %f), accuracy = %li", unbiasedMagneticFieldSample.x, unbiasedMagneticFieldSample.y, unbiasedMagneticFieldSample.z, (long)unbiasedMagneticFieldSample.accuracy];
+    
+}
+
+NSString * NSStringFromSKHeadingSample(SKHeadingSample headingSample) {
+    
+    return [NSString stringWithFormat:@"heading = %f", headingSample.heading];
+    
+}
+
+#pragma mark - Private C Functions
 
 SKDeviceMotionManagerMagneticFieldAccuracy sk_dm_mag_accuracy_from_mag_accuracy(CMMagneticFieldCalibrationAccuracy accuracy) {
     

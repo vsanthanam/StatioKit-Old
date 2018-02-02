@@ -1,0 +1,6 @@
+framework module StatioKit {
+    umbrella header "StatioKit.h"
+    
+    export *
+    module * { export * }
+}

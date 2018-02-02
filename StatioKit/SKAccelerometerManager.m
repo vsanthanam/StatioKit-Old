@@ -12,7 +12,7 @@
 
 @interface SKAccelerometerManager ()
 
-@property (nonatomic, strong) NSOperationQueue *accelerationDataQueue;
+@property (nonatomic, strong) NSOperationQueue *accelerometerQueue;
 @property (nonatomic, strong, readonly) CMMotionManager *internalMotionManager;
 
 @end
@@ -20,8 +20,9 @@
 @implementation SKAccelerometerManager
 
 @synthesize delegate = _delegate;
+@synthesize accelerationSample = _accelerationSample;
 
-@synthesize accelerationDataQueue = _accelerationDataQueue;
+@synthesize accelerometerQueue = _accelerometerQueue;
 @synthesize internalMotionManager = _internalMotionManager;
 
 #pragma mark = Overridden Instance Methods
@@ -41,7 +42,6 @@
     if (!_internalMotionManager) {
         
         _internalMotionManager = [[CMMotionManager alloc] init];
-        _internalMotionManager.deviceMotionUpdateInterval = 0.01f;
         
     }
     
@@ -73,6 +73,37 @@
 
 - (BOOL)startTracking {
     
+    return [self startTrackingWithUpdateFrequency:0.01f];
+    
+}
+
+- (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
+    
+    if (!self.isTracking && self.internalMotionManager.accelerometerAvailable) {
+        
+        self.internalMotionManager.accelerometerUpdateInterval = frequency;
+        
+        CMAccelerometerHandler handler = ^(CMAccelerometerData *accelerometerData, NSError *error) {
+            
+            if (error) {
+                
+                [self _processError:error];
+                
+            } else if (accelerometerData) {
+                
+                [self _processAccelerometerData:accelerometerData];
+                
+            }
+            
+        };
+     
+        [self.internalMotionManager startAccelerometerUpdatesToQueue:self.accelerometerQueue
+                                                         withHandler:handler];
+        
+        return YES;
+        
+    }
+    
     return NO;
     
 }
@@ -82,7 +113,7 @@
     if (self.tracking) {
         
         [self.internalMotionManager stopAccelerometerUpdates];
-        [self.accelerationDataQueue waitUntilAllOperationsAreFinished];
+        [self.accelerometerQueue waitUntilAllOperationsAreFinished];
         
         return YES;
         
@@ -95,9 +126,31 @@
 
 - (void)_processAccelerometerData:(CMAccelerometerData *)accelerometerData {
     
+    SKAccelerationSample accelerationSample;
+    accelerationSample.timestamp = accelerometerData.timestamp;
+    accelerationSample.x = accelerometerData.acceleration.x;
+    accelerationSample.y = accelerometerData.acceleration.y;
+    accelerationSample.z = accelerometerData.acceleration.z;
+    
+    _accelerationSample = accelerationSample;
+    
+    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveAccelerationSample:)]) {
+        
+        [self.delegate accelerometerManager:self
+               didRecieveAccelerationSample:self.accelerationSample];
+        
+    }
+    
 }
 
 - (void)_processError:(NSError *)error {
+ 
+    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didFailToGetAccelerometerDataWithError:)]) {
+        
+        [self.delegate accelerometerManager:self
+     didFailToGetAccelerometerDataWithError:error];
+        
+    }
     
 }
 
