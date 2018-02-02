@@ -154,4 +154,12 @@
     
 }
 
+#pragma mark - C Functions
+
+NSString * NSStringFromSKAccelerationSample(SKAccelerationSample accelerationSample) {
+    
+    return [NSString stringWithFormat:@"acceleration = (%f, %f, %f)", accelerationSample.x, accelerationSample.y, accelerationSample.z];
+    
+}
+
 @end

@@ -170,7 +170,6 @@
     unbiasedMagneticFieldSample.x = deviceMotion.magneticField.field.x;
     unbiasedMagneticFieldSample.y = deviceMotion.magneticField.field.y;
     unbiasedMagneticFieldSample.z = deviceMotion.magneticField.field.z;
-    unbiasedMagneticFieldSample.accuracy = sk_dm_mag_accuracy_from_mag_accuracy(deviceMotion.magneticField.accuracy);
     
     if (@available(iOS 11.0, *)) {
         
@@ -272,57 +271,13 @@ NSString * NSStringFromSKUserAccelerationSample(SKUserAccelerationSample userAcc
 
 NSString * NSStringFromSKUnbiasedMagneticFieldSample(SKUnbiasedMagneticFieldSample unbiasedMagneticFieldSample) {
     
-    return [NSString stringWithFormat:@"unbiased magnetic field = (%f, %f, %f), accuracy = %li", unbiasedMagneticFieldSample.x, unbiasedMagneticFieldSample.y, unbiasedMagneticFieldSample.z, (long)unbiasedMagneticFieldSample.accuracy];
+    return [NSString stringWithFormat:@"unbiased magnetic field = (%f, %f, %f)", unbiasedMagneticFieldSample.x, unbiasedMagneticFieldSample.y, unbiasedMagneticFieldSample.z];
     
 }
 
 NSString * NSStringFromSKHeadingSample(SKHeadingSample headingSample) {
     
     return [NSString stringWithFormat:@"heading = %f", headingSample.heading];
-    
-}
-
-#pragma mark - Private C Functions
-
-SKDeviceMotionManagerMagneticFieldAccuracy sk_dm_mag_accuracy_from_mag_accuracy(CMMagneticFieldCalibrationAccuracy accuracy) {
-    
-    SKDeviceMotionManagerMagneticFieldAccuracy rv;
-    
-    switch (accuracy) {
-            
-        case CMMagneticFieldCalibrationAccuracyUncalibrated:
-            
-            rv = SKDeviceMotionManagerMagneticFieldAccuracyUncalibrated;
-            
-            break;
-        
-        case CMMagneticFieldCalibrationAccuracyLow:
-            
-            rv = SKDeviceMotionManagerMagneticFieldAccuracyLow;
-            
-            break;
-            
-        case CMMagneticFieldCalibrationAccuracyMedium:
-            
-            rv = SKDeviceMotionManagerMagneticFieldAccuracyMedium;
-            
-            break;
-            
-        case CMMagneticFieldCalibrationAccuracyHigh:
-            
-            rv = SKDeviceMotionManagerMagneticFieldAccuracyHigh;
-            
-            break;
-            
-        default:
-            
-            rv = SKDeviceMotionManagerMagneticFieldAccuracyUnknown;
-            
-            break;
-            
-    }
-    
-    return rv;
     
 }
 

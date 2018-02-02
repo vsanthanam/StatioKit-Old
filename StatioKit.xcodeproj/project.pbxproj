@@ -44,6 +44,8 @@
 		07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */; };
 		07E1B8432024B5A40077BB3A /* SKGyroscopeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07E1B8442024B5A40077BB3A /* SKGyroscopeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E1B8422024B5A40077BB3A /* SKGyroscopeManager.m */; };
+		07E1B84720251A0D0077BB3A /* SKMagnometerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E1B84520251A0D0077BB3A /* SKMagnometerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07E1B84820251A0D0077BB3A /* SKMagnometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E1B84620251A0D0077BB3A /* SKMagnometerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAccelerometerManager.m; sourceTree = "<group>"; };
 		07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKGyroscopeManager.h; sourceTree = "<group>"; };
 		07E1B8422024B5A40077BB3A /* SKGyroscopeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKGyroscopeManager.m; sourceTree = "<group>"; };
+		07E1B84520251A0D0077BB3A /* SKMagnometerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMagnometerManager.h; sourceTree = "<group>"; };
+		07E1B84620251A0D0077BB3A /* SKMagnometerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKMagnometerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 				07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */,
 				07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */,
 				07E1B8422024B5A40077BB3A /* SKGyroscopeManager.m */,
+				07E1B84520251A0D0077BB3A /* SKMagnometerManager.h */,
+				07E1B84620251A0D0077BB3A /* SKMagnometerManager.m */,
 			);
 			path = StatioKit;
 			sourceTree = "<group>";
@@ -192,6 +198,7 @@
 				07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */,
 				0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */,
 				07C783AD2020ECBA00E39E3B /* SKDeviceMotionManager.h in Headers */,
+				07E1B84720251A0D0077BB3A /* SKMagnometerManager.h in Headers */,
 				07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */,
 				07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */,
 			);
@@ -331,6 +338,7 @@
 				07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */,
 				07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */,
 				07A224FE200BEBBA000866C7 /* NSBundle+StatioKit.m in Sources */,
+				07E1B84820251A0D0077BB3A /* SKMagnometerManager.m in Sources */,
 				07C783AE2020ECBA00E39E3B /* SKDeviceMotionManager.m in Sources */,
 				07E1B8442024B5A40077BB3A /* SKGyroscopeManager.m in Sources */,
 				07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */,

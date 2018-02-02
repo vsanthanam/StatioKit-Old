@@ -40,4 +40,6 @@ typedef struct {
 - (BOOL)startTrackigWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
+NSString * _Nonnull NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample);
+
 @end

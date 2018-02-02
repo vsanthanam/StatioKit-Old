@@ -40,4 +40,6 @@ typedef struct {
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
+NSString * _Nonnull NSStringFromSKAccelerationSample(SKAccelerationSample accelerationSample);
+
 @end

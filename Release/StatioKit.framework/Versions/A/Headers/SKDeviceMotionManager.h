@@ -8,16 +8,6 @@
 
 @import Foundation;
 
-typedef NS_ENUM(NSInteger, SKDeviceMotionManagerMagneticFieldAccuracy) {
-    
-    SKDeviceMotionManagerMagneticFieldAccuracyUnknown = -1,
-    SKDeviceMotionManagerMagneticFieldAccuracyUncalibrated = 0,
-    SKDeviceMotionManagerMagneticFieldAccuracyLow = 1,
-    SKDeviceMotionManagerMagneticFieldAccuracyMedium = 2,
-    SKDeviceMotionManagerMagneticFieldAccuracyHigh = 3
-    
-};
-
 typedef struct {
     
     NSTimeInterval timestamp;
@@ -60,7 +50,6 @@ typedef struct {
     double x;
     double y;
     double z;
-    SKDeviceMotionManagerMagneticFieldAccuracy accuracy;
     
 } SKUnbiasedMagneticFieldSample;
 

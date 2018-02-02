@@ -19,3 +19,4 @@
 #import <StatioKit/SKDeviceMotionManager.h>
 #import <StatioKit/SKAccelerometerManager.h>
 #import <StatioKit/SKGyroscopeManager.h>
+#import <StatioKit/SKMagnometerManager.h>

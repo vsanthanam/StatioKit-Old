@@ -156,4 +156,12 @@
     
 }
 
+#pragma mark - C Functions
+
+NSString * NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample) {
+    
+    return [NSString stringWithFormat:@"rotation rate = (%f, %f, %f)", rotationRateSample.x, rotationRateSample.y, rotationRateSample.z];
+    
+}
+
 @end
