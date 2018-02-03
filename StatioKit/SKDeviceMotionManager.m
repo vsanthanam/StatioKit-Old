@@ -171,6 +171,8 @@
     unbiasedMagneticFieldSample.y = deviceMotion.magneticField.field.y;
     unbiasedMagneticFieldSample.z = deviceMotion.magneticField.field.z;
     
+    _unbiasedMagneticFieldSample = unbiasedMagneticFieldSample;
+    
     if (@available(iOS 11.0, *)) {
         
         SKHeadingSample headingSample;
@@ -181,8 +183,6 @@
         _headingSample = headingSample;
         
     }
-    
-    _unbiasedMagneticFieldSample = unbiasedMagneticFieldSample;
 
     if ([self.delegate respondsToSelector:@selector(deviceMotionManager:didRecieveAttitudeSample:)]) {
         
