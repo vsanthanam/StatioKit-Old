@@ -21,10 +21,10 @@ typedef struct {
 
 @protocol SKGyroscopeManagerDelegate<NSObject>
 
+@optional
+
 - (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didRecieveRotationRateSample:(SKRotationRateSample)rotationRateSample;
 - (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didFailToGetGyroscopeDataWithError:(nonnull NSError *)error;
-
-@optional
 
 @end
 
@@ -37,7 +37,7 @@ typedef struct {
 - (nullable instancetype)initWithDelegate:(nullable id<SKGyroscopeManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 - (BOOL)startTracking;
-- (BOOL)startTrackigWithUpdateFrequency:(double)frequency;
+- (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
 NSString * _Nonnull NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample);

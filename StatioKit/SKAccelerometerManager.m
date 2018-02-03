@@ -82,6 +82,7 @@
     if (!self.isTracking && self.internalMotionManager.accelerometerAvailable) {
         
         self.internalMotionManager.accelerometerUpdateInterval = frequency;
+        self.accelerometerQueue = [[NSOperationQueue alloc] init];
         
         CMAccelerometerHandler handler = ^(CMAccelerometerData *accelerometerData, NSError *error) {
             

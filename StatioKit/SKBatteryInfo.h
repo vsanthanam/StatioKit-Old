@@ -6,8 +6,25 @@
 //  Copyright © 2018 Varun Santhanam. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+extern NSString * _Nonnull const SKBatteryInfoChangedNotification;
+
+typedef NS_ENUM(NSInteger, SKBatteryInfoState) {
+    
+    SKBatteryInfoStateUnknown = -1,
+    SKBatteryInfoStateDischarging = 0,
+    SKBatteryInfoStateCharging = 1,
+    SKBatteryInfoStateFull = 2
+    
+};
 
 @interface SKBatteryInfo : NSObject
+
+@property (NS_NONATOMIC_IOSONLY, readonly) double batteryLevel;
+@property (NS_NONATOMIC_IOSONLY, readonly) SKBatteryInfoState batteryState;
+@property (NS_NONATOMIC_IOSONLY, assign, getter=isMonitoringEnabled) BOOL monitoringEnabled;
+
++ (nullable instancetype)sharedBatteryInfo;
 
 @end

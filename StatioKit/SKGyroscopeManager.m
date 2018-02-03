@@ -73,15 +73,16 @@
 
 - (BOOL)startTracking {
     
-    return [self startTrackigWithUpdateFrequency:0.01f];
+    return [self startTrackingWithUpdateFrequency:0.01f];
     
 }
 
-- (BOOL)startTrackigWithUpdateFrequency:(double)frequency {
+- (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
     
     if (!self.isTracking && self.internalMotionManager.gyroAvailable) {
         
         self.internalMotionManager.gyroUpdateInterval = frequency;
+        self.gyroscopeQueue = [[NSOperationQueue alloc] init];
         
         CMGyroHandler handler = ^(CMGyroData *gyroscopeData, NSError *error) {
             
