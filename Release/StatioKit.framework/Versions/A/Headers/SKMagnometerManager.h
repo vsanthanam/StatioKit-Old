@@ -21,6 +21,8 @@ typedef struct {
 
 @protocol SKMagnometerManagerDelegate<NSObject>
 
+@optional
+
 - (void)magnometerManager:(nonnull SKMagnometerManager *)manager didRecieveMagneticFieldSample:(SKMagneticFieldSample)magneticFieldSample;
 - (void)magnometerManager:(nonnull SKMagnometerManager *)manager didFailToGetMagnometerDataWithError:(nonnull NSError *)error;
 

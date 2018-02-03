@@ -82,6 +82,7 @@
     if (!self.tracking && self.internalMotionManager.magnetometerAvailable) {
         
         self.internalMotionManager.magnetometerUpdateInterval = frequency;
+        self.magnometerQueue = [[NSOperationQueue alloc] init];
         
         CMMagnetometerHandler handler = ^(CMMagnetometerData *magnometerData, NSError *error) {
             
