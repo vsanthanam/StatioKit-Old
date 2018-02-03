@@ -155,11 +155,34 @@
 		07A224D5200BD301000866C7 /* StatioKit */ = {
 			isa = PBXGroup;
 			children = (
-				07A22570200C453B000866C7 /* route.h */,
 				07A224E5200BE27D000866C7 /* module.modulemap */,
-				07A224D6200BD301000866C7 /* StatioKit.h */,
-				07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */,
-				07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */,
+				07E1B88C2026593F0077BB3A /* Src */,
+			);
+			path = StatioKit;
+			sourceTree = "<group>";
+		};
+		07A224F3200BE300000866C7 /* StatioKitResources */ = {
+			isa = PBXGroup;
+			children = (
+				07A224F4200BE300000866C7 /* Info.plist */,
+				07A224E2200BE18B000866C7 /* ModelNames.plist */,
+			);
+			path = StatioKitResources;
+			sourceTree = "<group>";
+		};
+		07E1B88C2026593F0077BB3A /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				07E1B88F202659690077BB3A /* Shared Headers */,
+				07E1B88E202659620077BB3A /* Categories */,
+				07E1B88D202659450077BB3A /* Classes */,
+			);
+			name = Src;
+			sourceTree = "<group>";
+		};
+		07E1B88D202659450077BB3A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
 				07A224DF200BD32E000866C7 /* SKDeviceInfo.h */,
 				07A224E0200BD32E000866C7 /* SKDeviceInfo.m */,
 				07A2255C200C20A2000866C7 /* SKCarrierInfo.h */,
@@ -183,16 +206,25 @@
 				07E1B84520251A0D0077BB3A /* SKMagnometerManager.h */,
 				07E1B84620251A0D0077BB3A /* SKMagnometerManager.m */,
 			);
-			path = StatioKit;
+			name = Classes;
 			sourceTree = "<group>";
 		};
-		07A224F3200BE300000866C7 /* StatioKitResources */ = {
+		07E1B88E202659620077BB3A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				07A224F4200BE300000866C7 /* Info.plist */,
-				07A224E2200BE18B000866C7 /* ModelNames.plist */,
+				07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */,
+				07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */,
 			);
-			path = StatioKitResources;
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		07E1B88F202659690077BB3A /* Shared Headers */ = {
+			isa = PBXGroup;
+			children = (
+				07A22570200C453B000866C7 /* route.h */,
+				07A224D6200BD301000866C7 /* StatioKit.h */,
+			);
+			name = "Shared Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

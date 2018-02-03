@@ -6,8 +6,10 @@
 //  Copyright © 2018 Varun Santhanam. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface SKDiskInfo : NSObject
+
++ (nullable instancetype)sharedDiskInfo;
 
 @end

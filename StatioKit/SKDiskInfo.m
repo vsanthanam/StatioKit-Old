@@ -10,4 +10,18 @@
 
 @implementation SKDiskInfo
 
++ (instancetype)sharedDiskInfo {
+    
+    static SKDiskInfo *sharedDiskInfo;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        sharedDiskInfo = [[self alloc] init];
+        
+    });
+    
+    return sharedDiskInfo;
+    
+}
+
 @end
