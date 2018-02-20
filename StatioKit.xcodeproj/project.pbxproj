@@ -27,6 +27,11 @@
 		0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0725CFD120179F2B00701B89 /* SKProcessorInfo.m */; };
 		072CC9C420110B4A00C1A87E /* SKMemoryInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		072CC9C520110B4A00C1A87E /* SKMemoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */; };
+		07771366203377A5009041F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771365203377A5009041F2 /* Foundation.framework */; };
+		07771368203377A9009041F2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771367203377A9009041F2 /* CoreTelephony.framework */; };
+		0777136A203377AD009041F2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771369203377AD009041F2 /* CoreMotion.framework */; };
+		0777136C203377B1009041F2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777136B203377B1009041F2 /* CoreLocation.framework */; };
+		0777136E203377D4009041F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777136D203377D4009041F2 /* UIKit.framework */; };
 		07A224D9200BD301000866C7 /* StatioKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07A224D6200BD301000866C7 /* StatioKit.h */; };
 		07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224E0200BD32E000866C7 /* SKDeviceInfo.m */; };
 		07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224DF200BD32E000866C7 /* SKDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,8 +43,6 @@
 		07A2256A200C2E4F000866C7 /* SKNetworkInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A22568200C2E4F000866C7 /* SKNetworkInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A22569200C2E4F000866C7 /* SKNetworkInfo.m */; };
 		07A22571200C453B000866C7 /* route.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A22570200C453B000866C7 /* route.h */; };
-		07C783AD2020ECBA00E39E3B /* SKDeviceMotionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07C783AE2020ECBA00E39E3B /* SKDeviceMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */; };
 		07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */; };
 		07E1B8432024B5A40077BB3A /* SKGyroscopeManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +90,11 @@
 		0725CFD120179F2B00701B89 /* SKProcessorInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProcessorInfo.m; sourceTree = "<group>"; };
 		072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMemoryInfo.h; sourceTree = "<group>"; };
 		072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKMemoryInfo.m; sourceTree = "<group>"; };
+		07771365203377A5009041F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		07771367203377A9009041F2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		07771369203377AD009041F2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0777136B203377B1009041F2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0777136D203377D4009041F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		07A224D3200BD301000866C7 /* libStatioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStatioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A224D6200BD301000866C7 /* StatioKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatioKit.h; sourceTree = "<group>"; };
 		07A224DF200BD32E000866C7 /* SKDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKDeviceInfo.h; sourceTree = "<group>"; };
@@ -102,8 +110,6 @@
 		07A22568200C2E4F000866C7 /* SKNetworkInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKNetworkInfo.h; sourceTree = "<group>"; };
 		07A22569200C2E4F000866C7 /* SKNetworkInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKNetworkInfo.m; sourceTree = "<group>"; };
 		07A22570200C453B000866C7 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
-		07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKDeviceMotionManager.h; sourceTree = "<group>"; };
-		07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKDeviceMotionManager.m; sourceTree = "<group>"; };
 		07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAccelerometerManager.h; sourceTree = "<group>"; };
 		07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAccelerometerManager.m; sourceTree = "<group>"; };
 		07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKGyroscopeManager.h; sourceTree = "<group>"; };
@@ -121,6 +127,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0777136E203377D4009041F2 /* UIKit.framework in Frameworks */,
+				0777136C203377B1009041F2 /* CoreLocation.framework in Frameworks */,
+				0777136A203377AD009041F2 /* CoreMotion.framework in Frameworks */,
+				07771368203377A9009041F2 /* CoreTelephony.framework in Frameworks */,
+				07771366203377A5009041F2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +145,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07771364203377A5009041F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0777136D203377D4009041F2 /* UIKit.framework */,
+				0777136B203377B1009041F2 /* CoreLocation.framework */,
+				07771369203377AD009041F2 /* CoreMotion.framework */,
+				07771367203377A9009041F2 /* CoreTelephony.framework */,
+				07771365203377A5009041F2 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		07A224CA200BD301000866C7 = {
 			isa = PBXGroup;
 			children = (
 				07A224D5200BD301000866C7 /* StatioKit */,
 				07A224F3200BE300000866C7 /* StatioKitResources */,
 				07A224D4200BD301000866C7 /* Products */,
+				07771364203377A5009041F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,8 +221,6 @@
 				07E1B84A2025285C0077BB3A /* SKBatteryInfo.m */,
 				07E1B86B20255D460077BB3A /* SKDiskInfo.h */,
 				07E1B86C20255D460077BB3A /* SKDiskInfo.m */,
-				07C783AB2020ECBA00E39E3B /* SKDeviceMotionManager.h */,
-				07C783AC2020ECBA00E39E3B /* SKDeviceMotionManager.m */,
 				07E1B8382023A9320077BB3A /* SKAccelerometerManager.h */,
 				07E1B8392023A9320077BB3A /* SKAccelerometerManager.m */,
 				07E1B8412024B5A40077BB3A /* SKGyroscopeManager.h */,
@@ -243,7 +265,6 @@
 				07E1B86D20255D460077BB3A /* SKDiskInfo.h in Headers */,
 				07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */,
 				0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */,
-				07C783AD2020ECBA00E39E3B /* SKDeviceMotionManager.h in Headers */,
 				07E1B84720251A0D0077BB3A /* SKMagnometerManager.h in Headers */,
 				07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */,
 				07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */,
@@ -387,7 +408,6 @@
 				07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */,
 				07A224FE200BEBBA000866C7 /* NSBundle+StatioKit.m in Sources */,
 				07E1B84820251A0D0077BB3A /* SKMagnometerManager.m in Sources */,
-				07C783AE2020ECBA00E39E3B /* SKDeviceMotionManager.m in Sources */,
 				07E1B8442024B5A40077BB3A /* SKGyroscopeManager.m in Sources */,
 				07E1B83B2023A9320077BB3A /* SKAccelerometerManager.m in Sources */,
 			);
@@ -526,7 +546,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
@@ -542,7 +562,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";

@@ -17,14 +17,25 @@ typedef struct {
     
 } SKRotationRateSample;
 
+typedef struct {
+    
+    NSTimeInterval timestamp;
+    double roll;
+    double pitch;
+    double yaw;
+    
+} SKAttitudeSample;
+
 @class SKGyroscopeManager;
 
 @protocol SKGyroscopeManagerDelegate<NSObject>
 
 @optional
 
-- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didRecieveRotationRateSample:(SKRotationRateSample)rotationRateSample;
-- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didFailToGetGyroscopeDataWithError:(nonnull NSError *)error;
+- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didRecieveRawRotationRate:(SKRotationRateSample)rotationRateSample;
+- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didRecieveUnbiasedRotationRate:(SKRotationRateSample)rotationRateSample;
+- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didRecieveAttitude:(SKAttitudeSample)attitudeSample;
+- (void)gyroscopeManager:(nonnull SKGyroscopeManager *)manager didFailWithError:(nonnull NSError *)error;
 
 @end
 
@@ -32,7 +43,9 @@ typedef struct {
 
 @property (weak, nullable) id<SKGyroscopeManagerDelegate> delegate;
 @property (NS_NONATOMIC_IOSONLY, readonly, getter=isTracking) BOOL tracking;
-@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKRotationRateSample rotationRateSample;
+@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKRotationRateSample rawRotationRate;
+@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKRotationRateSample unbiasedRotationRate;
+@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKAttitudeSample attitude;
 
 - (nullable instancetype)initWithDelegate:(nullable id<SKGyroscopeManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
@@ -41,5 +54,6 @@ typedef struct {
 - (BOOL)stopTracking;
 
 NSString * _Nonnull NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample);
+NSString * _Nonnull NSStringFromSKAttitudeSample(SKAttitudeSample attitudeSample);
 
 @end

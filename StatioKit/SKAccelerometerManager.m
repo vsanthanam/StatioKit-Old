@@ -13,6 +13,7 @@
 @interface SKAccelerometerManager ()
 
 @property (nonatomic, strong) NSOperationQueue *accelerometerQueue;
+@property (nonatomic, strong) NSOperationQueue *deviceMotionQueue;
 @property (nonatomic, strong, readonly) CMMotionManager *internalMotionManager;
 
 @end
@@ -20,9 +21,11 @@
 @implementation SKAccelerometerManager
 
 @synthesize delegate = _delegate;
-@synthesize accelerationSample = _accelerationSample;
+@synthesize deviceAcceleration = _deviceAcceleration;
+@synthesize userAcceleration = _userAcceleration;
 
 @synthesize accelerometerQueue = _accelerometerQueue;
+@synthesize deviceMotionQueue = _deviceMotionQueue;
 @synthesize internalMotionManager = _internalMotionManager;
 
 #pragma mark = Overridden Instance Methods
@@ -51,7 +54,7 @@
 
 - (BOOL)isTracking {
     
-    return self.internalMotionManager.accelerometerActive;
+    return self.internalMotionManager.accelerometerActive && self.internalMotionManager.deviceMotionActive;
     
 }
 
@@ -79,12 +82,14 @@
 
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
     
-    if (!self.isTracking && self.internalMotionManager.accelerometerAvailable) {
+    if (!self.isTracking && self.internalMotionManager.accelerometerAvailable && self.internalMotionManager.deviceMotionAvailable) {
         
         self.internalMotionManager.accelerometerUpdateInterval = frequency;
+        self.internalMotionManager.deviceMotionUpdateInterval = frequency;
         self.accelerometerQueue = [[NSOperationQueue alloc] init];
+        self.deviceMotionQueue = [[NSOperationQueue alloc] init];
         
-        CMAccelerometerHandler handler = ^(CMAccelerometerData *accelerometerData, NSError *error) {
+        CMAccelerometerHandler accelerometerHandler = ^(CMAccelerometerData *accelerometerData, NSError *error) {
             
             if (error) {
                 
@@ -99,7 +104,24 @@
         };
      
         [self.internalMotionManager startAccelerometerUpdatesToQueue:self.accelerometerQueue
-                                                         withHandler:handler];
+                                                         withHandler:accelerometerHandler];
+        
+        CMDeviceMotionHandler deviceMotionHandler = ^(CMDeviceMotion *deviceMotion, NSError *error) {
+            
+            if (error) {
+                
+                [self _processError:error];
+                
+            } else if (deviceMotion) {
+                
+                [self _processError:error];
+                
+            }
+            
+        };
+        
+        [self.internalMotionManager startDeviceMotionUpdatesToQueue:self.deviceMotionQueue
+                                                        withHandler:deviceMotionHandler];
         
         return YES;
         
@@ -115,6 +137,9 @@
         
         [self.internalMotionManager stopAccelerometerUpdates];
         [self.accelerometerQueue waitUntilAllOperationsAreFinished];
+        
+        [self.internalMotionManager stopDeviceMotionUpdates];
+        [self.deviceMotionQueue waitUntilAllOperationsAreFinished];
         
         return YES;
         
@@ -132,13 +157,32 @@
     accelerationSample.x = accelerometerData.acceleration.x;
     accelerationSample.y = accelerometerData.acceleration.y;
     accelerationSample.z = accelerometerData.acceleration.z;
+
+    _deviceAcceleration = accelerationSample;
+
+    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveDeviceAcceleration:)]) {
+
+        [self.delegate accelerometerManager:self
+               didRecieveDeviceAcceleration:self.deviceAcceleration];
+
+    }
     
-    _accelerationSample = accelerationSample;
+}
+
+- (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
     
-    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveAccelerationSample:)]) {
+    SKAccelerationSample accelerationSample;
+    accelerationSample.timestamp = deviceMotion.timestamp;
+    accelerationSample.x = deviceMotion.userAcceleration.x;
+    accelerationSample.y = deviceMotion.userAcceleration.y;
+    accelerationSample.z = deviceMotion.userAcceleration.z;
+    
+    _userAcceleration = accelerationSample;
+    
+    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveUserAcceleration:)]) {
         
         [self.delegate accelerometerManager:self
-               didRecieveAccelerationSample:self.accelerationSample];
+                 didRecieveUserAcceleration:self.userAcceleration];
         
     }
     
@@ -146,11 +190,11 @@
 
 - (void)_processError:(NSError *)error {
  
-    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didFailToGetAccelerometerDataWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(accelerometerManager:didFailWithError:)]) {
         
         [self.delegate accelerometerManager:self
-     didFailToGetAccelerometerDataWithError:error];
-        
+                           didFailWithError:error];
+
     }
     
 }

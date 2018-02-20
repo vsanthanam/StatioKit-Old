@@ -6,6 +6,10 @@
 //  Copyright © 2018 Varun Santhanam. All rights reserved.
 //
 
+/**
+ Umbrella Header
+ */
+
 #import <Foundation/Foundation.h>
 
 #import <StatioKit/NSBundle+StatioKit.h>
@@ -18,7 +22,6 @@
 #import <StatioKit/SKBatteryInfo.h>
 #import <StatioKit/SKDiskInfo.h>
 
-#import <StatioKit/SKDeviceMotionManager.h>
 #import <StatioKit/SKAccelerometerManager.h>
 #import <StatioKit/SKGyroscopeManager.h>
 #import <StatioKit/SKMagnometerManager.h>

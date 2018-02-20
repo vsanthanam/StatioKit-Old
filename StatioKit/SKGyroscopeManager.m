@@ -13,6 +13,7 @@
 @interface SKGyroscopeManager ()
 
 @property (nonatomic, strong) NSOperationQueue *gyroscopeQueue;
+@property (nonatomic, strong) NSOperationQueue *deviceMotionQueue;
 @property (nonatomic, strong, readonly) CMMotionManager *internalMotionManager;
 
 @end
@@ -20,7 +21,9 @@
 @implementation SKGyroscopeManager
 
 @synthesize delegate = _delegate;
-@synthesize rotationRateSample = _rotationRateSample;
+@synthesize rawRotationRate = _rawRotationRate;
+@synthesize unbiasedRotationRate = _unbiasedRotationRate;
+@synthesize attitude = _attitude;
 
 @synthesize gyroscopeQueue = _gyroscopeQueue;
 @synthesize internalMotionManager = _internalMotionManager;
@@ -51,7 +54,7 @@
 
 - (BOOL)isTracking {
     
-    return self.internalMotionManager.gyroActive;
+    return self.internalMotionManager.gyroActive && self.internalMotionManager.deviceMotionActive;
     
 }
 
@@ -79,12 +82,14 @@
 
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
     
-    if (!self.isTracking && self.internalMotionManager.gyroAvailable) {
+    if (!self.isTracking && self.internalMotionManager.gyroAvailable && self.internalMotionManager.deviceMotionAvailable) {
         
         self.internalMotionManager.gyroUpdateInterval = frequency;
         self.gyroscopeQueue = [[NSOperationQueue alloc] init];
+        self.internalMotionManager.deviceMotionUpdateInterval = frequency;
+        self.deviceMotionQueue = [[NSOperationQueue alloc] init];
         
-        CMGyroHandler handler = ^(CMGyroData *gyroscopeData, NSError *error) {
+        CMGyroHandler gyroscopeHandler = ^(CMGyroData *gyroscopeData, NSError *error) {
             
             if (error) {
                 
@@ -99,7 +104,24 @@
         };
         
         [self.internalMotionManager startGyroUpdatesToQueue:self.gyroscopeQueue
-                                                withHandler:handler];
+                                                withHandler:gyroscopeHandler];
+        
+        CMDeviceMotionHandler deviceMotionHandler = ^(CMDeviceMotion *deviceMotion, NSError *error) {
+            
+            if (error) {
+                
+                [self _processError:error];
+                
+            } else if (deviceMotion) {
+                
+                [self _processDeviceMotion:deviceMotion];
+                
+            }
+            
+        };
+        
+        [self.internalMotionManager startDeviceMotionUpdatesToQueue:self.deviceMotionQueue
+                                                        withHandler:deviceMotionHandler];
         
         return YES;
         
@@ -115,6 +137,9 @@
         
         [self.internalMotionManager stopGyroUpdates];
         [self.gyroscopeQueue waitUntilAllOperationsAreFinished];
+        
+        [self.internalMotionManager stopDeviceMotionUpdates];
+        [self.deviceMotionQueue waitUntilAllOperationsAreFinished];
         
         return YES;
         
@@ -135,12 +160,46 @@
     rotationRateSample.y = gyroscopeData.rotationRate.y;
     rotationRateSample.z = gyroscopeData.rotationRate.z;
     
-    _rotationRateSample = rotationRateSample;
+    _rawRotationRate = rotationRateSample;
     
-    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didRecieveRotationRateSample:)]) {
+    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didRecieveRawRotationRate:)]) {
         
         [self.delegate gyroscopeManager:self
-           didRecieveRotationRateSample:self.rotationRateSample];
+              didRecieveRawRotationRate:self.rawRotationRate];
+        
+    }
+    
+}
+
+- (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
+    
+    SKRotationRateSample rotationRateSample;
+    rotationRateSample.timestamp = deviceMotion.timestamp;
+    rotationRateSample.x = deviceMotion.rotationRate.x;
+    rotationRateSample.y = deviceMotion.rotationRate.y;
+    rotationRateSample.z = deviceMotion.rotationRate.z;
+    
+    _unbiasedRotationRate = rotationRateSample;
+    
+    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didRecieveUnbiasedRotationRate:)]) {
+        
+        [self.delegate gyroscopeManager:self
+         didRecieveUnbiasedRotationRate:self.unbiasedRotationRate];
+        
+    }
+    
+    SKAttitudeSample attitudeSample;
+    attitudeSample.timestamp = deviceMotion.timestamp;
+    attitudeSample.roll = deviceMotion.attitude.roll;
+    attitudeSample.pitch = deviceMotion.attitude.pitch;
+    attitudeSample.yaw = deviceMotion.attitude.yaw;
+    
+    _attitude = attitudeSample;
+    
+    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didRecieveAttitude:)]) {
+        
+        [self.delegate gyroscopeManager:self
+                     didRecieveAttitude:self.attitude];
         
     }
     
@@ -148,10 +207,10 @@
 
 - (void)_processError:(NSError *)error {
     
-    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didFailToGetGyroscopeDataWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didFailWithError:)]) {
         
         [self.delegate gyroscopeManager:self
-     didFailToGetGyroscopeDataWithError:error];
+                       didFailWithError:error];
         
     }
     
@@ -162,6 +221,12 @@
 NSString * NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample) {
     
     return [NSString stringWithFormat:@"rotation rate = (%f, %f, %f)", rotationRateSample.x, rotationRateSample.y, rotationRateSample.z];
+    
+}
+
+NSString * NSStringFromSKAttitudeSample(SKAttitudeSample attidudeSample) {
+    
+    return [NSString stringWithFormat:@"attitude = (roll: %f, pitch = %f, yaw %f)", attidudeSample.roll, attidudeSample.pitch, attidudeSample.yaw];
     
 }
 

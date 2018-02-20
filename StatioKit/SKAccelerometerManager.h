@@ -23,8 +23,9 @@ typedef struct {
 
 @optional
 
-- (void)accelerometerManager:(nonnull SKAccelerometerManager *)manager didRecieveAccelerationSample:(SKAccelerationSample)accelerationSample;
-- (void)accelerometerManager:(nonnull SKAccelerometerManager *)manager didFailToGetAccelerometerDataWithError:(nonnull NSError *)error;
+- (void)accelerometerManager:(nonnull SKAccelerometerManager *)manager didRecieveDeviceAcceleration:(SKAccelerationSample)accelerationSample;
+- (void)accelerometerManager:(nonnull SKAccelerometerManager *)manager didRecieveUserAcceleration:(SKAccelerationSample)accelerationSample;
+- (void)accelerometerManager:(nonnull SKAccelerometerManager *)manager didFailWithError:(nonnull NSError *)error;
 
 @end
 
@@ -32,7 +33,8 @@ typedef struct {
 
 @property (weak, nullable) id<SKAccelerometerManagerDelegate> delegate;
 @property (NS_NONATOMIC_IOSONLY, readonly, getter=isTracking) BOOL tracking;
-@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKAccelerationSample accelerationSample;
+@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKAccelerationSample deviceAcceleration;
+@property (NS_NONATOMIC_IOSONLY, assign, readonly) SKAccelerationSample userAcceleration;
 
 - (nullable instancetype)initWithDelegate:(nullable id<SKAccelerometerManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>i386</key>
-	<string>Simulator</string>
+	<string>Simulator (32)</string>
 	<key>x86_64</key>
-	<string>Simulator</string>
+	<string>Simulator (64)</string>
 	<key>iPhone1,1</key>
 	<string>iPhone 2G</string>
 	<key>iPhone1,2</key>

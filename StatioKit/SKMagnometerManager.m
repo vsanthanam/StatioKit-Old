@@ -13,6 +13,7 @@
 @interface SKMagnometerManager ()
 
 @property (nonatomic, strong) NSOperationQueue *magnometerQueue;
+@property (nonatomic, strong) NSOperationQueue *deviceMotionQueue;
 @property (nonatomic, strong, readonly) CMMotionManager *internalMotionManager;
 
 @end
@@ -20,9 +21,13 @@
 @implementation SKMagnometerManager
 
 @synthesize delegate = _delegate;
-@synthesize magneticFieldSample = _magneticFieldSample;
+@synthesize rawMagneticField = _rawMagneticField;
+@synthesize unbiasedMagneticField = _unbiasedMagneticField;
+@synthesize gravity = _gravity;
+@synthesize heading = _heading;
 
 @synthesize magnometerQueue = _magnometerQueue;
+@synthesize deviceMotionQueue = _deviceMotionQueue;
 @synthesize internalMotionManager = _internalMotionManager;
 
 #pragma mark - Overridden Instance Methods
@@ -51,7 +56,7 @@
 
 - (BOOL)isTracking {
     
-    return self.internalMotionManager.magnetometerActive;
+    return self.internalMotionManager.magnetometerActive && self.internalMotionManager.deviceMotionActive;
     
 }
 
@@ -79,12 +84,14 @@
 
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency {
     
-    if (!self.tracking && self.internalMotionManager.magnetometerAvailable) {
+    if (!self.tracking && self.internalMotionManager.magnetometerAvailable && self.internalMotionManager.deviceMotionAvailable) {
         
         self.internalMotionManager.magnetometerUpdateInterval = frequency;
         self.magnometerQueue = [[NSOperationQueue alloc] init];
+        self.internalMotionManager.deviceMotionUpdateInterval = frequency;
+        self.deviceMotionQueue = [[NSOperationQueue alloc] init];
         
-        CMMagnetometerHandler handler = ^(CMMagnetometerData *magnometerData, NSError *error) {
+        CMMagnetometerHandler magnometerHandler = ^(CMMagnetometerData *magnometerData, NSError *error) {
             
             if (error) {
                 
@@ -99,7 +106,24 @@
         };
         
         [self.internalMotionManager startMagnetometerUpdatesToQueue:self.magnometerQueue
-                                                        withHandler:handler];
+                                                        withHandler:magnometerHandler];
+        
+        CMDeviceMotionHandler deviceMotionHandler = ^(CMDeviceMotion *deviceMotion, NSError *error) {
+            
+            if (error) {
+                
+                [self _processError:error];
+                
+            } else {
+                
+                [self _processDeviceMotion:deviceMotion];
+                
+            }
+            
+        };
+        
+        [self.internalMotionManager startDeviceMotionUpdatesToQueue:self.deviceMotionQueue
+                                                        withHandler:deviceMotionHandler];
         
         return YES;
         
@@ -115,6 +139,9 @@
         
         [self.internalMotionManager stopMagnetometerUpdates];
         [self.magnometerQueue waitUntilAllOperationsAreFinished];
+        
+        [self.internalMotionManager stopDeviceMotionUpdates];
+        [self.deviceMotionQueue waitUntilAllOperationsAreFinished];
         
         return YES;
         
@@ -134,12 +161,59 @@
     magneticFieldSample.y = magnometerData.magneticField.y;
     magneticFieldSample.z = magnometerData.magneticField.z;
     
-    _magneticFieldSample = magneticFieldSample;
+    _rawMagneticField = magneticFieldSample;
     
-    if ([self.delegate respondsToSelector:@selector(magnometerManager:didRecieveMagneticFieldSample:)]) {
+    if ([self.delegate respondsToSelector:@selector(magnometerManager:didRecieveRawMagneticField:)]) {
         
         [self.delegate magnometerManager:self
-           didRecieveMagneticFieldSample:self.magneticFieldSample];
+              didRecieveRawMagneticField:self.rawMagneticField];
+        
+    }
+    
+}
+
+- (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
+    
+    SKMagneticFieldSample magneticFieldSample;
+    magneticFieldSample.timestamp = deviceMotion.timestamp;
+    magneticFieldSample.x = deviceMotion.magneticField.field.x;
+    magneticFieldSample.y = deviceMotion.magneticField.field.y;
+    magneticFieldSample.z = deviceMotion.magneticField.field.z;
+    
+    _unbiasedMagneticField = magneticFieldSample;
+    
+    if ([self.delegate respondsToSelector:@selector(magnometerMamager:didRecieveUnbiasedMagneticField:)]) {
+        
+        [self.delegate magnometerMamager:self
+         didRecieveUnbiasedMagneticField:self.unbiasedMagneticField];
+        
+    }
+    
+    SKGravitySample gravitySample;
+    gravitySample.timestamp = deviceMotion.timestamp;
+    gravitySample.x = deviceMotion.gravity.x;
+    gravitySample.y = deviceMotion.gravity.y;
+    gravitySample.z = deviceMotion.gravity.z;
+    
+    _gravity = gravitySample;
+    
+    if ([self.delegate respondsToSelector:@selector(magnometerManager:didRecieveGravity:)]) {
+        
+        [self.delegate magnometerManager:self
+                       didRecieveGravity:self.gravity];
+        
+    }
+    
+    SKHeadingSample headingSample;
+    headingSample.timestamp = deviceMotion.timestamp;
+    headingSample.heading = deviceMotion.heading;
+    
+    _heading = headingSample;
+    
+    if ([self.delegate respondsToSelector:@selector(magnometerManager:didRecieveHeading:)]) {
+        
+        [self.delegate magnometerManager:self
+                       didRecieveHeading:self.heading];
         
     }
     
@@ -147,10 +221,10 @@
 
 - (void)_processError:(NSError *)error {
     
-    if ([self.delegate respondsToSelector:@selector(magnometerManager:didFailToGetMagnometerDataWithError:)]) {
+    if ([self.delegate respondsToSelector:@selector(magnometerManager:didFailWithError:)]) {
         
         [self.delegate magnometerManager:self
-     didFailToGetMagnometerDataWithError:error];
+                        didFailWithError:error];
         
     }
     
@@ -161,6 +235,18 @@
 NSString * NSStringFromSKMagneticFieldSample(SKMagneticFieldSample magneticFieldSample) {
     
     return [NSString stringWithFormat:@"magnetic field = (%f, %f, %f)", magneticFieldSample.x, magneticFieldSample.y, magneticFieldSample.z];
+    
+}
+
+NSString * NSStringFromSKGravitySample(SKGravitySample gravitySample) {
+    
+    return [NSString stringWithFormat:@"gravity = (%f, %f, %f)", gravitySample.x, gravitySample.y, gravitySample.z];
+    
+}
+
+NSString * NSStringFromSKHeadingSample(SKHeadingSample headingSample) {
+    
+    return [NSString stringWithFormat:@"heading = %f", headingSample.heading];
     
 }
 
