@@ -7,18 +7,59 @@
 //
 
 @import Foundation;
-
+/**
+ Notification sent when the shared instance of SKCarrierInfo changes it's carrier information.
+ */
 extern NSString * _Nonnull const SKCarrierInfoUpdateNotification;
 
+/**
+ SKCarrierInfo is a singleton instance used to retrieve some basic static information about device's wlan carrier
+ */
 @interface SKCarrierInfo : NSObject
 
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierName;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierCountry;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierISOCountryCode;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierMobileCountryCode;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierMobileNetworkCode;
-@property (NS_NONATOMIC_IOSONLY, readonly) BOOL allowsVOIP;
+/**
+ @name Accessing The Singleton
+ */
 
+/**
+ Get the shared instance
+ 
+ @return The shared instance
+ */
 + (nullable instancetype)sharedCarrierInfo;
+
+/**
+ @name Getting Carrier Info
+ */
+
+/**
+ The name the the carrier
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierName;
+
+/**
+ The country that the carrier is belongs to
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierCountry;
+
+/**
+ The ISO code of the carrier's country.
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierISOCountryCode;
+
+/**
+ The MCC code of the carrier
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierMobileCountryCode;
+
+/**
+ The MNC code of the carrier
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *carrierMobileNetworkCode;
+
+/**
+ YES is the carrier allows VOIP, otherwise NO.
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL allowsVOIP;
 
 @end
