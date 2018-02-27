@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		071997252045EE3D004719FA /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 071997282045EE3D004719FA /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				071997292045EE42004719FA /* Build Documentation w/ Jazzy */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
 		07A224E7200BE2C6000866C7 /* Framework */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 07A224E8200BE2C6000866C7 /* Build configuration list for PBXAggregateTarget "Framework" */;
@@ -319,6 +330,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Varun Santhanam";
 				TargetAttributes = {
+					071997252045EE3D004719FA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					07A224D2200BD301000866C7 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -348,6 +363,7 @@
 				07A224D2200BD301000866C7 /* StatioKit */,
 				07A224F1200BE300000866C7 /* StatioKitResources */,
 				07A224E7200BE2C6000866C7 /* Framework */,
+				071997252045EE3D004719FA /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -364,6 +380,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		071997292045EE42004719FA /* Build Documentation w/ Jazzy */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Documentation w/ Jazzy";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "jazzy --objc --clean --author Varun Santhanam --author_url https://www.vsanthanam.com --github_url https://github.com/vsanthanam/StatioKit --umbrella-header StatioKit/StatioKit.h --framework-root . --module StatioKit --sdk iphonesimulator --hide-declarations swift --output \"${PROJECT_DIR}/Documentation\"";
+		};
 		07A224E6200BE295000866C7 /* Build Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +466,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		071997262045EE3D004719FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		071997272045EE3D004719FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y88YPD4RJA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		07A224DA200BD301000866C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -627,6 +675,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		071997282045EE3D004719FA /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				071997262045EE3D004719FA /* Debug */,
+				071997272045EE3D004719FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		07A224CE200BD301000866C7 /* Build configuration list for PBXProject "StatioKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
