@@ -9,7 +9,7 @@
 @import Foundation;
 
 /**
- Notification sent when the shared instance of SKCarrierInfo changes it's carrier information.
+ Notification sent when the shared instance of SKCarrierInfo changes its carrier information.
  */
 extern NSString * _Nonnull const SKCarrierInfoUpdateNotification;
 
