@@ -97,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0719972A2045F6E6004719FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0725CFD020179F2B00701B89 /* SKProcessorInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKProcessorInfo.h; sourceTree = "<group>"; };
 		0725CFD120179F2B00701B89 /* SKProcessorInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProcessorInfo.m; sourceTree = "<group>"; };
 		072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMemoryInfo.h; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 		07A224CA200BD301000866C7 = {
 			isa = PBXGroup;
 			children = (
+				0719972A2045F6E6004719FA /* README.md */,
 				07A224D5200BD301000866C7 /* StatioKit */,
 				07A224F3200BE300000866C7 /* StatioKitResources */,
 				07A224D4200BD301000866C7 /* Products */,
