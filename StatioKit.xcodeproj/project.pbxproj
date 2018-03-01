@@ -47,7 +47,7 @@
 		07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224E0200BD32E000866C7 /* SKDeviceInfo.m */; };
 		07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224DF200BD32E000866C7 /* SKDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A224FA200BE3FC000866C7 /* ModelNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07A224E2200BE18B000866C7 /* ModelNames.plist */; };
-		07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A224FB200BEBBA000866C7 /* NSBundle+StatioKit.h */; };
 		07A224FE200BEBBA000866C7 /* NSBundle+StatioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A224FC200BEBBA000866C7 /* NSBundle+StatioKit.m */; };
 		07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2255C200C20A2000866C7 /* SKCarrierInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A2255F200C20A2000866C7 /* SKCarrierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A2255D200C20A2000866C7 /* SKCarrierInfo.m */; };
@@ -269,7 +269,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */,
 				07A2256A200C2E4F000866C7 /* SKNetworkInfo.h in Headers */,
 				07A22571200C453B000866C7 /* route.h in Headers */,
 				07E1B8432024B5A40077BB3A /* SKGyroscopeManager.h in Headers */,
@@ -281,6 +280,7 @@
 				07E1B84720251A0D0077BB3A /* SKMagnometerManager.h in Headers */,
 				07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */,
 				07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */,
+				07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

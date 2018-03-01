@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger, SKBatteryInfoState) {
 
 /**
  @name Controlling Singleton Behavior
+ */
  
  /**
  Battery Monitoring. If enabled, the singleton will send notification upon battery level changes

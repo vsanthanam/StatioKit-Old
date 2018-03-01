@@ -9,7 +9,7 @@
 @import Foundation;
 
 /**
- SKAccellerationSample is a structure representing a single acceleration measurement represented as a vector, along with a timestamp expresssed as an NSTimeInteravl of seconds since system boot.
+ SKAccelerationSample is a structure representing a single acceleration measurement represented as a vector, along with a timestamp expresssed as an NSTimeInteravl of seconds since system boot.
  */
 typedef struct {
     
@@ -81,7 +81,7 @@ typedef struct {
 @property (weak, nullable) id<SKAccelerometerManagerDelegate> delegate;
 
 /**
- The current stracking status of the manager
+ The current tracking status of the manager
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, getter=isTracking) BOOL tracking;
 
@@ -96,7 +96,7 @@ typedef struct {
 @property (NS_NONATOMIC_IOSONLY, assign, readonly) SKAccelerationSample userAcceleration;
 
 /**
- Create an an accelerometer manager with a delegate object
+ Create a accelerometer manager with a delegate object
 
  @param delegate The delegate object used to handle measurements made by the manager
  @return The accelerometer manager
