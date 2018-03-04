@@ -13,8 +13,6 @@
 
 #import "SKDeviceInfo.h"
 
-NSString * const SKDeviceInfoConnectorStatusNotification = @"SKDeviceInfoConnectorStatusNotification";
-
 @implementation SKDeviceInfo
 
 #pragma mark - Public Class Methods
@@ -30,35 +28,6 @@ NSString * const SKDeviceInfoConnectorStatusNotification = @"SKDeviceInfoConnect
     });
     
     return sharedDeviceInfo;
-    
-}
-
-#pragma mark - Overridden Instance Methods
-
-- (instancetype)init {
-    
-    self = [super init];
-    
-    if (self) {
-    
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_handleBatteryStatusChange:)
-                                                     name:UIDeviceBatteryStateDidChangeNotification
-                                                   object:nil];
-        
-        [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-        
-    }
-    
-    return self;
-    
-}
-
-- (void)dealloc {
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIDeviceBatteryStateDidChangeNotification
-                                                  object:nil];
     
 }
 
@@ -102,7 +71,6 @@ NSString * const SKDeviceInfoConnectorStatusNotification = @"SKDeviceInfoConnect
 
 - (NSString *)modelIdentifier {
     
-    // Set up a new Device Type String
     NSString *deviceType;
     struct utsname dt;
     
@@ -134,32 +102,6 @@ NSString * const SKDeviceInfoConnectorStatusNotification = @"SKDeviceInfoConnect
 - (NSTimeInterval)systemUptime {
     
     return [NSProcessInfo processInfo].systemUptime;
-    
-}
-
-- (SKConnectorStatus)connectorStatus {
-    
-    UIDevice *device = [UIDevice currentDevice];
-    
-    if (device.batteryState == UIDeviceBatteryStateUnplugged) {
-        
-        return SKConnectorStatusDisconnected;
-        
-    } else if (device.batteryState == UIDeviceBatteryStateCharging || device.batteryState == UIDeviceBatteryStateFull) {
-        
-        return SKConnectorStatusConnected;
-        
-    }
-    
-    return SKConnectorStatusUnknown;
-}
-
-#pragma mark - Private Instance Methods
-
-- (void)_handleBatteryStatusChange:(id)sender {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:SKDeviceInfoConnectorStatusNotification
-                                                        object:nil];
     
 }
 

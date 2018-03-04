@@ -9,37 +9,6 @@
 @import Foundation;
 
 /**
- Notification sent when the connector status of the device changes
- */
-extern NSString * _Nonnull const SKDeviceInfoConnectorStatusNotification;
-
-/**
- An enumeration defining the various available connector statuses
-
- - SKConnectorStatusDisconnected: The connector is not connected
- - SKConnectorStatusConnected: The connecter is connected
- - SKConnectorStatusUnknown: The connector status is not known
- */
-typedef NS_ENUM(NSInteger, SKConnectorStatus) {
-    
-    /**
-     The connector is not connected
-     */
-    SKConnectorStatusDisconnected = 0,
-    
-    /**
-     The connector is connected
-     */
-    SKConnectorStatusConnected = 1,
-    
-    /**
-     The connector status is not known
-     */
-    SKConnectorStatusUnknown = 2
-    
-};
-
-/**
  SKDeviceInfo is a singleton instance used to retrieve some basic static information about the current hardware
  */
 @interface SKDeviceInfo : NSObject
@@ -93,10 +62,5 @@ typedef NS_ENUM(NSInteger, SKConnectorStatus) {
  Get a time interval representing system upting
  */
 @property (NS_NONATOMIC_IOSONLY, readonly) NSTimeInterval systemUptime;
-
-/**
- Get the current connector status
- */
-@property (NS_NONATOMIC_IOSONLY, readonly) SKConnectorStatus connectorStatus;
 
 @end

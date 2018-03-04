@@ -8,27 +8,95 @@
 
 @import Foundation;
 
+/**
+ Notification sent when the connector status of the device changes
+ */
 extern NSString * _Nonnull const SKDeviceInfoConnectorStatusNotification;
 
+/**
+ An enumeration defining the various available connector statuses
+
+ - SKConnectorStatusDisconnected: The connector is not connected
+ - SKConnectorStatusConnected: The connecter is connected
+ - SKConnectorStatusUnknown: The connector status is not known
+ */
 typedef NS_ENUM(NSInteger, SKConnectorStatus) {
     
+    /**
+     The connector is not connected
+     */
     SKConnectorStatusDisconnected = 0,
+    
+    /**
+     The connector is connected
+     */
     SKConnectorStatusConnected = 1,
+    
+    /**
+     The connector status is not known
+     */
     SKConnectorStatusUnknown = 2
     
 };
 
+/**
+ SKDeviceInfo is a singleton instance used to retrieve some basic static information about the current hardware
+ */
 @interface SKDeviceInfo : NSObject
 
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *model;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *modelName;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *modelIdentifier;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *systemName;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *systemVersion;
-@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *deviceName;
-@property (NS_NONATOMIC_IOSONLY, readonly) NSTimeInterval systemUptime;
-@property (NS_NONATOMIC_IOSONLY, readonly) SKConnectorStatus connectorStatus;
+/*
+ @name Accessing The Singleton
+ */
 
+/**
+ Get the shared instance
+
+ @return The shared instance
+ */
 + (nullable instancetype)sharedDeviceInfo;
+
+/**
+ @name Getting Device Info
+ */
+
+/**
+ Get the current model of device (i.e. iPhone, iPad, etc.)
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *model;
+
+/**
+ Get the name of the current model (i.e. iPhone X, iPad mini, etc.)
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *modelName;
+
+/**
+ Get the identifier of the current model (i.e. iPad2,1, iPhone5,2, etc.)
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *modelIdentifier;
+
+/**
+ Get the name of the OS (i.e. iOS, watchOS, tvOS, etc.)
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *systemName;
+
+/**
+ Get the version of the OS (i.e. 11.2.5, 10.0.1, etc.)
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *systemVersion;
+
+/**
+ Get the user assigned device name (i.e. 'Steve's iPhone')
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *deviceName;
+
+/**
+ Get a time interval representing system upting
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly) NSTimeInterval systemUptime;
+
+/**
+ Get the current connector status
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly) SKConnectorStatus connectorStatus;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright © 2018 Varun Santhanam. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <StatioKit/NSBundle+StatioKit.h>
+/**
+ Umbrella Header
+ */
 
 #import <StatioKit/SKDeviceInfo.h>
 #import <StatioKit/SKCarrierInfo.h>
@@ -21,4 +21,3 @@
 #import <StatioKit/SKAccelerometerManager.h>
 #import <StatioKit/SKGyroscopeManager.h>
 #import <StatioKit/SKMagnometerManager.h>
-#import <StatioKit/SKLocationManager.h>
