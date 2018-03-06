@@ -15,7 +15,11 @@
 
 #import "SKProcessorInfo.h"
 
-@implementation SKProcessorInfo
+@implementation SKProcessorInfo {
+    
+    NSArray<NSNumber *> *_usageArray;
+    
+}
 
 + (instancetype)sharedProcessorInfo {
     
@@ -96,8 +100,8 @@
     } else if (type == CPU_TYPE_ARM64) {
         [cpu appendFormat:@"arm64"];
     }
-    
-    return cpu;
+
+    return cpu.length > 0 ? [cpu copy] : @"Unknown";
     
 }
 
@@ -129,6 +133,106 @@
     sysctlbyname("hw.ncpu", &cpu, &size, NULL, 0);
     
     return (NSUInteger)cpu;
+    
+}
+
+- (double)processorUsage {
+    
+    [self _updateProcessorUsage];
+    
+    double total = 0.0f;
+    
+    for (NSNumber *usage in _usageArray) {
+        
+        total += usage.doubleValue;
+        
+    }
+    
+    return total / (_usageArray.count);
+    
+}
+
+
+- (double)processorUsageForCore:(NSUInteger)core {
+    
+    [self _updateProcessorUsage];
+    
+    if (core < _usageArray.count) {
+        
+        return _usageArray[core].doubleValue;
+        
+    }
+    
+    return 0.0f;
+    
+}
+
+- (void)_updateProcessorUsage {
+    
+    processor_info_array_t _cpuInfo, _prevCPUInfo = nil;
+    mach_msg_type_number_t _numCPUInfo, _numPrevCPUInfo = 0;
+    unsigned _numCPUs;
+    NSLock *_cpuUsageLock;
+    
+    // Get the number of processors from sysctl
+    int _mib[2U] = { CTL_HW, HW_NCPU };
+    size_t _sizeOfNumCPUs = sizeof(_numCPUs);
+    int _status = sysctl(_mib, 2U, &_numCPUs, &_sizeOfNumCPUs, NULL, 0U);
+    if (_status)
+        _numCPUs = 1;
+    
+    // Allocate the lock
+    _cpuUsageLock = [[NSLock alloc] init];
+    
+    // Get the processor info
+    natural_t _numCPUsU = 0U;
+    kern_return_t err = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &_numCPUsU, &_cpuInfo, &_numCPUInfo);
+    if (err == KERN_SUCCESS) {
+        
+        [_cpuUsageLock lock];
+        
+        // Go through info for each processor
+        NSMutableArray *processorInfo = [NSMutableArray new];
+        for (unsigned i = 0U; i < _numCPUs; ++i) {
+            
+            Float32 _inUse, _total;
+            
+            if (_prevCPUInfo) {
+                
+                _inUse = (
+                          (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER])
+                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM])
+                          + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE]   - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE])
+                          );
+                
+                _total = _inUse + (_cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE] - _prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE]);
+                
+            } else {
+                
+                _inUse = _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE];
+                _total = _inUse + _cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE];
+                
+            }
+            // Add to the processor usage info
+            [processorInfo addObject:@(_inUse / _total)];
+        }
+        
+        [_cpuUsageLock unlock];
+        
+        if (_prevCPUInfo) {
+            
+            size_t prevCpuInfoSize = sizeof(integer_t) * _numPrevCPUInfo;
+            vm_deallocate(mach_task_self(), (vm_address_t)_prevCPUInfo, prevCpuInfoSize);
+            
+        }
+        
+        _usageArray = processorInfo;
+        
+    } else {
+        
+        _usageArray = nil;
+        
+    }
     
 }
 

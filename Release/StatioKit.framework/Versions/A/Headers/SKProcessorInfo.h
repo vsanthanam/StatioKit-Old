@@ -30,5 +30,8 @@
 @property (NS_NONATOMIC_IOSONLY, readonly) double frequency;
 @property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger physicalCores;
 @property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger logicalCores;
+@property (NS_NONATOMIC_IOSONLY, readonly) double processorUsage;
+
+- (double)processorUsageForCore:(NSUInteger)core;
 
 @end
