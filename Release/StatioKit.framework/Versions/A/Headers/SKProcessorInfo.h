@@ -24,30 +24,11 @@
  */
 + (nullable instancetype)sharedProcessorInfo;
 
-/**
- @name CPU Info
- */
-
-/**
- Total number of processors
- */
-@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger processors;
-
-/**
- @name CPU Usage
- */
-
-/**
- Total number of active processors
- */
-@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger activeProcessors;
-
-/**
- Get the usage from 0.0-1.0 of a core
-
- @param index Index of the core
- @return The usage, expresed as a double from 0.0 - 1.0
- */
-- (double)processorUsageForProcessorAtIndex:(NSUInteger)index;
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *processorModel;
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *processorName;
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *architecture;
+@property (NS_NONATOMIC_IOSONLY, readonly) double frequency;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger physicalCores;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSUInteger logicalCores;
 
 @end

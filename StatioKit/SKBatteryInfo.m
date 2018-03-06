@@ -48,6 +48,10 @@ NSString * const SKBatteryInfoChangedNotification = @"SKBatteryInfoChangedNotifi
                                                  selector:@selector(_postNotification:)
                                                      name:UIDeviceBatteryStateDidChangeNotification
                                                    object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(_postNotification:)
+                                                     name:NSProcessInfoPowerStateDidChangeNotification
+                                                   object:nil];
         
     }
     
@@ -62,6 +66,9 @@ NSString * const SKBatteryInfoChangedNotification = @"SKBatteryInfoChangedNotifi
                                                   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIDeviceBatteryStateDidChangeNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSProcessInfoPowerStateDidChangeNotification
                                                   object:nil];
     
 }
@@ -123,6 +130,12 @@ NSString * const SKBatteryInfoChangedNotification = @"SKBatteryInfoChangedNotifi
     }
     
     return rv;
+    
+}
+
+- (BOOL)isLowPowerModeEnabled {
+    
+    return [NSProcessInfo processInfo].lowPowerModeEnabled;
     
 }
 

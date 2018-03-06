@@ -9,12 +9,9 @@
 @import Foundation;
 
 /**
- @field timestamp test
- @field x test
- @field y test
- @field z test
+ SKAccelerationSample is a structure representing a single acceleration measurement represented as a vector, along with a timestamp expresssed as an NSTimeInteravl of seconds since system boot.
  */
-struct SKAccelerationSample {
+typedef struct {
     
     /**
      The timestamp of the measurement, expressed as an NSTimeInterval of seconds since system boot.
@@ -36,13 +33,7 @@ struct SKAccelerationSample {
      */
     double z;
     
-};
-
-
-/**
- SKAccelerationSample is a structure representing a single acceleration measurement represented as a vector, along with a timestamp expresssed as an NSTimeInteravl of seconds since system boot.
- */
-typedef struct SKAccelerationSample SKAccelerationSample;
+} SKAccelerationSample;
 
 @class SKAccelerometerManager;
 

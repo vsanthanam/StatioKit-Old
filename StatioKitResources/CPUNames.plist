@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>D221AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D22AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D211AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D21AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D201AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D20AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A11 Bionic</string>
+		<key>Clockspeed</key>
+		<integer>2390</integer>
+	</dict>
+	<key>D111AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A10 Fusion</string>
+		<key>Clockspeed</key>
+		<integer>2340</integer>
+	</dict>
+	<key>D11AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A10 Fusion</string>
+		<key>Clockspeed</key>
+		<integer>2340</integer>
+	</dict>
+	<key>D101AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A10 Fusion</string>
+		<key>Clockspeed</key>
+		<integer>2340</integer>
+	</dict>
+	<key>D10AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A10 Fusion</string>
+		<key>Clockspeed</key>
+		<integer>2340</integer>
+	</dict>
+	<key>N69AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1800</integer>
+	</dict>
+	<key>N69uAP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1800</integer>
+	</dict>
+	<key>N66AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1849</integer>
+	</dict>
+	<key>N66mAP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1849</integer>
+	</dict>
+	<key>N71AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1849</integer>
+	</dict>
+	<key>N71mAP</key>
+	<dict>
+		<key>Name</key>
+		<string>A9</string>
+		<key>Clockspeed</key>
+		<integer>1849</integer>
+	</dict>
+	<key>N56AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A8</string>
+		<key>Clockspeed</key>
+		<integer>1400</integer>
+	</dict>
+	<key>N61AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A8</string>
+		<key>Clockspeed</key>
+		<integer>1400</integer>
+	</dict>
+	<key>N53AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A7</string>
+		<key>Clockspeed</key>
+		<integer>1300</integer>
+	</dict>
+	<key>N51AP</key>
+	<dict>
+		<key>Name</key>
+		<string>A7</string>
+		<key>Clockspeed</key>
+		<integer>1300</integer>
+	</dict>
+</dict>
+</plist>

@@ -34,6 +34,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0720DB78204EF72F0027BDC3 /* CPUNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0720DB77204EF72F0027BDC3 /* CPUNames.plist */; };
 		0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0725CFD020179F2B00701B89 /* SKProcessorInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0725CFD120179F2B00701B89 /* SKProcessorInfo.m */; };
 		072CC9C420110B4A00C1A87E /* SKMemoryInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -98,6 +99,7 @@
 
 /* Begin PBXFileReference section */
 		0719972A2045F6E6004719FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0720DB77204EF72F0027BDC3 /* CPUNames.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CPUNames.plist; sourceTree = "<group>"; };
 		0725CFD020179F2B00701B89 /* SKProcessorInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKProcessorInfo.h; sourceTree = "<group>"; };
 		0725CFD120179F2B00701B89 /* SKProcessorInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProcessorInfo.m; sourceTree = "<group>"; };
 		072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMemoryInfo.h; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				07A224F4200BE300000866C7 /* Info.plist */,
 				07A224E2200BE18B000866C7 /* ModelNames.plist */,
+				0720DB77204EF72F0027BDC3 /* CPUNames.plist */,
 			);
 			path = StatioKitResources;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0720DB78204EF72F0027BDC3 /* CPUNames.plist in Resources */,
 				07A224FA200BE3FC000866C7 /* ModelNames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,6 +601,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
@@ -613,6 +618,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = Y88YPD4RJA;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";

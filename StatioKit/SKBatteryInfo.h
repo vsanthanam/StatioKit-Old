@@ -84,4 +84,9 @@ typedef NS_ENUM(NSInteger, SKBatteryInfoState) {
  */
 @property (NS_NONATOMIC_IOSONLY, readonly) SKBatteryInfoState batteryState;
 
+/**
+ The current state of the battery's low power mode
+ */
+@property (NS_NONATOMIC_IOSONLY, readonly, getter=isLowPowerModeEnabled) BOOL lowPowerModeEnabled;
+
 @end

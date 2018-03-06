@@ -6,8 +6,12 @@
 //  Copyright © 2018 Varun Santhanam. All rights reserved.
 //
 
-@import Darwin.Mach;
 @import Darwin.sys.sysctl;
+@import Darwin.sys.param;
+@import Darwin.POSIX.sys.utsname;
+@import Darwin.Mach;
+
+#import "NSBundle+StatioKit.h"
 
 #import "SKProcessorInfo.h"
 
@@ -27,85 +31,110 @@
     
 }
 
-- (NSUInteger)processors {
+- (NSString *)processorModel {
     
-    return [NSProcessInfo processInfo].processorCount;
+    int mib[2];
+    
+    mib[0] = CTL_HW;
+    mib[1] = HW_MODEL;
+    
+    size_t size = 0;
+    
+    sysctl(mib, 2, NULL, &size, NULL, 0);
+    
+    char * result = malloc(size * sizeof(char));
+    
+    sysctl(mib, 2, result, &size, NULL, 0);
+    
+    NSString *rv = [[NSString alloc] initWithUTF8String:result];
+    
+    free(result);
+    
+    return rv;
     
 }
 
-- (NSUInteger)activeProcessors {
+- (NSString *)processorName {
+ 
+    NSDictionary *info = cpu_names()[self.processorModel];
     
-    return [NSProcessInfo processInfo].activeProcessorCount;
+    return info[@"Name"] ? info[@"Name"] : @"Unknown";
     
 }
 
-- (double)processorUsageForProcessorAtIndex:(NSUInteger)index {
+- (NSString *)architecture {
     
-    processor_info_array_t cpuInfo, prevCPUInfo = nil;
-    mach_msg_type_number_t numCPUInfo, numPrevCPUInfo = 0;
-    unsigned numCPUs;
+    NSMutableString *cpu = [[NSMutableString alloc] init];
+    size_t size;
+    cpu_type_t type;
+    cpu_subtype_t subtype;
+    size = sizeof(type);
+    sysctlbyname("hw.cputype", &type, &size, NULL, 0);
     
-    NSLock *cpuUsageLock;
+    size = sizeof(subtype);
+    sysctlbyname("hw.cpusubtype", &subtype, &size, NULL, 0);
     
-    int mib[2U] = { CTL_HW, HW_NCPU };
-    
-    size_t sizeOfNumCPUs = sizeof(numCPUs);
-    
-    int status = sysctl(mib, 2U, &numCPUs, &sizeOfNumCPUs, NULL, 0U);
-    
-    if (status)
-        numCPUs = 1;
-    
-    cpuUsageLock = [[NSLock alloc] init];
-    
-    natural_t numCPUsU = 0U;
-    kern_return_t err = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCPUInfo);
-    
-    if (err == KERN_SUCCESS) {
-        
-        [cpuUsageLock lock];
-
-        NSArray<NSNumber *> *processorInfo = [[NSArray<NSNumber *> alloc] init];
-        
-        for (unsigned i = 0U; i < numCPUs; ++i) {
-            
-            Float32 inUse, total;
-            
-            if (prevCPUInfo) {
-                
-                inUse = ((cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER] - prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER])
-                         + (cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] - prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM])
-                         + (cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE] - prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE])
-                        );
-                
-                total = inUse + (cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE] - prevCPUInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE]);
-                
-            } else {
-                
-                inUse = cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_USER] + cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_SYSTEM] + cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_NICE];
-                total = inUse + cpuInfo[(CPU_STATE_MAX * i) + CPU_STATE_IDLE];
-                
-            }
-
-            processorInfo = [processorInfo arrayByAddingObject:@(inUse / total)];
+    // values for cputype and cpusubtype defined in mach/machine.h
+    if (type == CPU_TYPE_X86_64) {
+        [cpu appendString:@"x86_64"];
+    } else if (type == CPU_TYPE_X86) {
+        [cpu appendString:@"x86"];
+    } else if (type == CPU_TYPE_ARM) {
+        [cpu appendString:@"arm"];
+        switch(subtype)
+        {
+            case CPU_SUBTYPE_ARM_V6:
+                [cpu appendString:@"v6"];
+                break;
+            case CPU_SUBTYPE_ARM_V7:
+                [cpu appendString:@"v7"];
+                break;
+            case CPU_SUBTYPE_ARM_V7S:
+                [cpu appendString:@"v7s"];
+                break;
         }
-        
-        [cpuUsageLock unlock];
-        
-        if (prevCPUInfo) {
-            
-            size_t prevCpuInfoSize = sizeof(integer_t) * numPrevCPUInfo;
-            vm_deallocate(mach_task_self(), (vm_address_t)prevCPUInfo, prevCpuInfoSize);
-            
-        }
-
-        return processorInfo[index].doubleValue;
-        
-    } else {
-
-        return 0.0f;
-        
+    } else if (type == CPU_TYPE_ARM64) {
+        [cpu appendFormat:@"arm64"];
     }
+    
+    return cpu;
+    
+}
+
+- (double)frequency {
+    
+    NSDictionary *info = cpu_names()[self.processorModel];
+    NSNumber *f = info[@"Clockspeed"];
+    
+    return f ? f.doubleValue : 0.0f;
+    
+}
+
+- (NSUInteger)physicalCores {
+    
+    size_t size;
+    unsigned int cpu;
+    size = sizeof(cpu);
+    sysctlbyname("hw.physicalcpu", &cpu, &size, NULL, 0);
+    
+    return (NSUInteger)cpu;
+    
+}
+
+- (NSUInteger)logicalCores {
+    
+    size_t size;
+    unsigned int cpu;
+    size = sizeof(cpu);
+    sysctlbyname("hw.ncpu", &cpu, &size, NULL, 0);
+    
+    return (NSUInteger)cpu;
+    
+}
+
+NSDictionary * cpu_names(void) {
+    
+    return [NSDictionary dictionaryWithContentsOfFile:[[NSBundle statioKitResources] pathForResource:@"CPUNames" ofType:@"plist"]];
     
 }
 
