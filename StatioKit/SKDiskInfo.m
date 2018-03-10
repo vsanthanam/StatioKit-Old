@@ -24,4 +24,44 @@
     
 }
 
+- (unsigned long long)totalDiskSpace {
+    
+    unsigned long long space = 0;
+    
+    NSError *error;
+    
+    NSArray<NSURL *> *urls = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSDictionary *dict =  [urls.lastObject resourceValuesForKeys:@[NSURLVolumeTotalCapacityKey] error:&error];
+    
+    if (dict) {
+        
+        NSNumber *size = dict[NSURLVolumeTotalCapacityKey];
+        space = size.unsignedLongLongValue;
+        
+    }
+    
+    return space;
+    
+}
+
+- (unsigned long long)freeDiskSpace {
+
+    unsigned long long space = 0;
+    
+    NSError *error;
+    
+    NSArray<NSURL *> *urls = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    NSDictionary *dict =  [urls.lastObject resourceValuesForKeys:@[NSURLVolumeAvailableCapacityForImportantUsageKey] error:&error];
+    
+    if (dict) {
+        
+        NSNumber *size = dict[NSURLVolumeAvailableCapacityForImportantUsageKey];
+        space = size.unsignedLongLongValue;
+        
+    }
+    
+    return space;
+    
+}
+
 @end

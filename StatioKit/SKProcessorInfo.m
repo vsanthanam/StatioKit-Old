@@ -137,9 +137,7 @@
 }
 
 - (double)processorUsage {
-    
-    [self _updateProcessorUsage];
-    
+        
     double total = 0.0f;
     
     for (NSNumber *usage in _usageArray) {
@@ -155,8 +153,6 @@
 
 - (double)processorUsageForCore:(NSUInteger)core {
     
-    [self _updateProcessorUsage];
-    
     if (core < _usageArray.count) {
         
         return _usageArray[core].doubleValue;
@@ -167,7 +163,7 @@
     
 }
 
-- (void)_updateProcessorUsage {
+- (void)updateProcessorUsage {
     
     processor_info_array_t _cpuInfo, _prevCPUInfo = nil;
     mach_msg_type_number_t _numCPUInfo, _numPrevCPUInfo = 0;

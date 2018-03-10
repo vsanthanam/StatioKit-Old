@@ -8,20 +8,11 @@
 
 @import Foundation;
 
-/**
- SKDiskInfo is a singleton instance used to retrieve disk usage information
- */
 @interface SKDiskInfo : NSObject
 
-/**
- @name Accessing The Singleton
- */
+@property (NS_NONATOMIC_IOSONLY, readonly) unsigned long long totalDiskSpace;
+@property (NS_NONATOMIC_IOSONLY, readonly) unsigned long long freeDiskSpace;
 
-/**
- Get the shared instance
-
- @return The shared instance
- */
 + (nullable instancetype)sharedDiskInfo;
 
 @end
