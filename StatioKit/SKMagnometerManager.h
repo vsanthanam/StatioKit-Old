@@ -70,8 +70,8 @@ typedef struct SKHeadingSample SKHeadingSample;
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
-NSString * _Nonnull NSStringFromSKMagneticFieldSample(SKMagneticFieldSample magneticFieldSample);
-NSString * _Nonnull NSStringFromSKGravitySample(SKGravitySample gravitySample);
-NSString * _Nonnull NSStringFromSKHeadingSample(SKHeadingSample headingSample);
+SKMagneticFieldSample SKMagneticFieldSampleMake(double x, double y, double z, NSTimeInterval timestamp);
+SKGravitySample SKGravitySampleMake(double x, double y, double z, NSTimeInterval timestamp);
+SKHeadingSample SKHeadingSampleMake(double heading, NSTimeInterval timestamp);
 
 @end

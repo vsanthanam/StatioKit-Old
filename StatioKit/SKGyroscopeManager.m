@@ -173,13 +173,9 @@
 
 - (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
     
-    SKRotationRateSample rotationRateSample;
-    rotationRateSample.timestamp = deviceMotion.timestamp;
-    rotationRateSample.x = deviceMotion.rotationRate.x;
-    rotationRateSample.y = deviceMotion.rotationRate.y;
-    rotationRateSample.z = deviceMotion.rotationRate.z;
+    SKRotationRateSample rotationSample = SKRotationRateSampleMake(deviceMotion.rotationRate.x, deviceMotion.rotationRate.y, deviceMotion.rotationRate.z, deviceMotion.timestamp);
     
-    _unbiasedRotationRate = rotationRateSample;
+    _unbiasedRotationRate = rotationSample;
     
     if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didRecieveUnbiasedRotationRate:)]) {
         
@@ -188,11 +184,7 @@
         
     }
     
-    SKAttitudeSample attitudeSample;
-    attitudeSample.timestamp = deviceMotion.timestamp;
-    attitudeSample.roll = deviceMotion.attitude.roll;
-    attitudeSample.pitch = deviceMotion.attitude.pitch;
-    attitudeSample.yaw = deviceMotion.attitude.yaw;
+    SKAttitudeSample attitudeSample = SKAttitudeSampleMake(deviceMotion.attitude.roll, deviceMotion.attitude.pitch, deviceMotion.attitude.yaw, deviceMotion.timestamp);
     
     _attitude = attitudeSample;
     
@@ -218,15 +210,29 @@
 
 #pragma mark - C Functions
 
-NSString * NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample) {
+SKRotationRateSample SKRotationRateSampleMake(double x, double y, double z, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"rotation rate = (%f, %f, %f)", rotationRateSample.x, rotationRateSample.y, rotationRateSample.z];
+    SKRotationRateSample sample;
+    
+    sample.x = x;
+    sample.y = y;
+    sample.z = z;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 
-NSString * NSStringFromSKAttitudeSample(SKAttitudeSample attidudeSample) {
+SKAttitudeSample SKAttitudeSampleMake(double roll, double pitch, double yaw, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"attitude = (roll: %f, pitch = %f, yaw %f)", attidudeSample.roll, attidudeSample.pitch, attidudeSample.yaw];
+    SKAttitudeSample sample;
+    
+    sample.roll = roll;
+    sample.pitch = pitch;
+    sample.yaw = yaw;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 

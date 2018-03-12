@@ -44,6 +44,6 @@ typedef struct SKAccelerationSample SKAccelerationSample;
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
-NSString * _Nonnull NSStringFromSKAccelerationSample(SKAccelerationSample accelerationSample);
+SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z, NSTimeInterval timestamp);
 
 @end

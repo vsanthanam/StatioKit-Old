@@ -57,7 +57,7 @@ typedef struct SKAttitudeSample SKAttitudeSample;
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
-NSString * _Nonnull NSStringFromSKRotationRateSample(SKRotationRateSample rotationRateSample);
-NSString * _Nonnull NSStringFromSKAttitudeSample(SKAttitudeSample attitudeSample);
+SKRotationRateSample SKRotationRateSampleMake(double x, double y, double z, NSTimeInterval timestamp);
+SKAttitudeSample SKAttitudeSampleMake(double roll, double pitch, double yaw, NSTimeInterval timestamp);
 
 @end

@@ -152,13 +152,9 @@
 
 - (void)_processAccelerometerData:(CMAccelerometerData *)accelerometerData {
     
-    SKAccelerationSample accelerationSample;
-    accelerationSample.timestamp = accelerometerData.timestamp;
-    accelerationSample.x = accelerometerData.acceleration.x;
-    accelerationSample.y = accelerometerData.acceleration.y;
-    accelerationSample.z = accelerometerData.acceleration.z;
+    SKAccelerationSample sample = SKAccelerationSampleMake(accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z, accelerometerData.timestamp);
 
-    _deviceAcceleration = accelerationSample;
+    _deviceAcceleration = sample;
 
     if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveDeviceAcceleration:)]) {
 
@@ -171,13 +167,9 @@
 
 - (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
     
-    SKAccelerationSample accelerationSample;
-    accelerationSample.timestamp = deviceMotion.timestamp;
-    accelerationSample.x = deviceMotion.userAcceleration.x;
-    accelerationSample.y = deviceMotion.userAcceleration.y;
-    accelerationSample.z = deviceMotion.userAcceleration.z;
+    SKAccelerationSample sample = SKAccelerationSampleMake(deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z, deviceMotion.timestamp);
     
-    _userAcceleration = accelerationSample;
+    _userAcceleration = sample;
     
     if ([self.delegate respondsToSelector:@selector(accelerometerManager:didRecieveUserAcceleration:)]) {
         
@@ -201,9 +193,15 @@
 
 #pragma mark - C Functions
 
-NSString * NSStringFromSKAccelerationSample(SKAccelerationSample accelerationSample) {
+SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"acceleration = (%f, %f, %f)", accelerationSample.x, accelerationSample.y, accelerationSample.z];
+    SKAccelerationSample sample;
+    sample.x = x;
+    sample.y = y;
+    sample.z = z;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 

@@ -174,11 +174,7 @@
 
 - (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
     
-    SKMagneticFieldSample magneticFieldSample;
-    magneticFieldSample.timestamp = deviceMotion.timestamp;
-    magneticFieldSample.x = deviceMotion.magneticField.field.x;
-    magneticFieldSample.y = deviceMotion.magneticField.field.y;
-    magneticFieldSample.z = deviceMotion.magneticField.field.z;
+    SKMagneticFieldSample magneticFieldSample = SKMagneticFieldSampleMake(deviceMotion.magneticField.field.x, deviceMotion.magneticField.field.y, deviceMotion.magneticField.field.z, deviceMotion.timestamp);
     
     _unbiasedMagneticField = magneticFieldSample;
     
@@ -189,11 +185,7 @@
         
     }
     
-    SKGravitySample gravitySample;
-    gravitySample.timestamp = deviceMotion.timestamp;
-    gravitySample.x = deviceMotion.gravity.x;
-    gravitySample.y = deviceMotion.gravity.y;
-    gravitySample.z = deviceMotion.gravity.z;
+    SKGravitySample gravitySample = SKGravitySampleMake(deviceMotion.gravity.x, deviceMotion.gravity.y, deviceMotion.gravity.z, deviceMotion.timestamp);
     
     _gravity = gravitySample;
     
@@ -204,10 +196,8 @@
         
     }
     
-    SKHeadingSample headingSample;
-    headingSample.timestamp = deviceMotion.timestamp;
-    headingSample.heading = deviceMotion.heading;
-    
+    SKHeadingSample headingSample = SKHeadingSampleMake(deviceMotion.heading, deviceMotion.timestamp);
+
     _heading = headingSample;
     
     if ([self.delegate respondsToSelector:@selector(magnometerManager:didRecieveHeading:)]) {
@@ -232,21 +222,40 @@
 
 #pragma mark - C Functions
 
-NSString * NSStringFromSKMagneticFieldSample(SKMagneticFieldSample magneticFieldSample) {
+SKMagneticFieldSample SKMagneticFieldSampleMake(double x, double y, double z, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"magnetic field = (%f, %f, %f)", magneticFieldSample.x, magneticFieldSample.y, magneticFieldSample.z];
+    SKMagneticFieldSample sample;
+    
+    sample.x = x;
+    sample.y = y;
+    sample.z = z;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 
-NSString * NSStringFromSKGravitySample(SKGravitySample gravitySample) {
+SKGravitySample SKGravitySampleMake(double x, double y, double z, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"gravity = (%f, %f, %f)", gravitySample.x, gravitySample.y, gravitySample.z];
+    SKGravitySample sample;
+    
+    sample.x = x;
+    sample.y = y;
+    sample.z = z;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 
-NSString * NSStringFromSKHeadingSample(SKHeadingSample headingSample) {
+SKHeadingSample SKHeadingSampleMake(double heading, NSTimeInterval timestamp) {
     
-    return [NSString stringWithFormat:@"heading = %f", headingSample.heading];
+    SKHeadingSample sample;
+    
+    sample.heading = heading;
+    sample.timestamp = timestamp;
+    
+    return sample;
     
 }
 
