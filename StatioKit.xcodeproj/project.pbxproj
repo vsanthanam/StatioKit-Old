@@ -39,6 +39,8 @@
 		0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0725CFD120179F2B00701B89 /* SKProcessorInfo.m */; };
 		072CC9C420110B4A00C1A87E /* SKMemoryInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		072CC9C520110B4A00C1A87E /* SKMemoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */; };
+		074DE95D205970B5001A0D4D /* sk_log.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DE95B205970B5001A0D4D /* sk_log.h */; };
+		074DE95E205970B5001A0D4D /* sk_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DE95C205970B5001A0D4D /* sk_log.c */; };
 		07771366203377A5009041F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771365203377A5009041F2 /* Foundation.framework */; };
 		07771368203377A9009041F2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771367203377A9009041F2 /* CoreTelephony.framework */; };
 		0777136A203377AD009041F2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07771369203377AD009041F2 /* CoreMotion.framework */; };
@@ -104,6 +106,8 @@
 		0725CFD120179F2B00701B89 /* SKProcessorInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKProcessorInfo.m; sourceTree = "<group>"; };
 		072CC9C220110B4A00C1A87E /* SKMemoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKMemoryInfo.h; sourceTree = "<group>"; };
 		072CC9C320110B4A00C1A87E /* SKMemoryInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKMemoryInfo.m; sourceTree = "<group>"; };
+		074DE95B205970B5001A0D4D /* sk_log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sk_log.h; sourceTree = "<group>"; };
+		074DE95C205970B5001A0D4D /* sk_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sk_log.c; sourceTree = "<group>"; };
 		07771365203377A5009041F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07771367203377A9009041F2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		07771369203377AD009041F2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -159,6 +163,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		075B25D0205AD7E30076B5B7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				07A22570200C453B000866C7 /* route.h */,
+				074DE95B205970B5001A0D4D /* sk_log.h */,
+				074DE95C205970B5001A0D4D /* sk_log.c */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		07771364203377A5009041F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,7 +227,8 @@
 		07E1B88C2026593F0077BB3A /* Src */ = {
 			isa = PBXGroup;
 			children = (
-				07E1B88F202659690077BB3A /* Shared Headers */,
+				07A224D6200BD301000866C7 /* StatioKit.h */,
+				075B25D0205AD7E30076B5B7 /* Other */,
 				07E1B88E202659620077BB3A /* Categories */,
 				07E1B88D202659450077BB3A /* Classes */,
 			);
@@ -256,15 +271,6 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		07E1B88F202659690077BB3A /* Shared Headers */ = {
-			isa = PBXGroup;
-			children = (
-				07A22570200C453B000866C7 /* route.h */,
-				07A224D6200BD301000866C7 /* StatioKit.h */,
-			);
-			name = "Shared Headers";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -281,6 +287,7 @@
 				07E1B83A2023A9320077BB3A /* SKAccelerometerManager.h in Headers */,
 				0725CFD220179F2B00701B89 /* SKProcessorInfo.h in Headers */,
 				07E1B84720251A0D0077BB3A /* SKMagnometerManager.h in Headers */,
+				074DE95D205970B5001A0D4D /* sk_log.h in Headers */,
 				07A2255E200C20A2000866C7 /* SKCarrierInfo.h in Headers */,
 				07A224E4200BE207000866C7 /* SKDeviceInfo.h in Headers */,
 				07A224FD200BEBBA000866C7 /* NSBundle+StatioKit.h in Headers */,
@@ -439,6 +446,7 @@
 				07A2255F200C20A2000866C7 /* SKCarrierInfo.m in Sources */,
 				072CC9C520110B4A00C1A87E /* SKMemoryInfo.m in Sources */,
 				0725CFD320179F2B00701B89 /* SKProcessorInfo.m in Sources */,
+				074DE95E205970B5001A0D4D /* sk_log.c in Sources */,
 				07E1B84C2025285C0077BB3A /* SKBatteryInfo.m in Sources */,
 				07A224E1200BD32E000866C7 /* SKDeviceInfo.m in Sources */,
 				07A2256B200C2E4F000866C7 /* SKNetworkInfo.m in Sources */,

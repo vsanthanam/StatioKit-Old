@@ -8,7 +8,21 @@
 
 #import "SKDiskInfo.h"
 
+#import "sk_log.h"
+
 @implementation SKDiskInfo
+
+static os_log_t disk_info_log;
+
+#pragma mark - Overridden Class Methods
+
++ (void)initialize {
+ 
+    disk_info_log = sk_log_create("SKDiskInfo");
+    
+}
+
+#pragma mark - Public Class Methods
 
 + (instancetype)sharedDiskInfo {
     
@@ -24,6 +38,8 @@
     
 }
 
+#pragma mark - Property Access Methods
+
 - (unsigned long long)totalDiskSpace {
     
     unsigned long long space = 0;
@@ -37,6 +53,10 @@
         
         NSNumber *size = dict[NSURLVolumeTotalCapacityKey];
         space = size.unsignedLongLongValue;
+        
+    } else if (error) {
+        
+        os_log_error(disk_info_log, "Couldn't Fetch Total Disk Space: %{public}@", error.localizedDescription);
         
     }
     
@@ -57,6 +77,10 @@
         
         NSNumber *size = dict[NSURLVolumeAvailableCapacityForImportantUsageKey];
         space = size.unsignedLongLongValue;
+        
+    } else if (error) {
+        
+        os_log_error(disk_info_log, "Couldn't Fetch Free Disk Space: %{public}@", error.localizedDescription);
         
     }
     

@@ -10,6 +10,8 @@
 
 #import "SKMagnometerManager.h"
 
+#import "sk_log.h"
+
 @interface SKMagnometerManager ()
 
 @property (nonatomic, strong) NSOperationQueue *magnometerQueue;
@@ -29,6 +31,16 @@
 @synthesize magnometerQueue = _magnometerQueue;
 @synthesize deviceMotionQueue = _deviceMotionQueue;
 @synthesize internalMotionManager = _internalMotionManager;
+
+static os_log_t magnometer_manager_log;
+
+#pragma mark - Public Class Methods
+
++ (void)initialize {
+    
+    magnometer_manager_log = sk_log_create("SKMagnometerManager");
+    
+}
 
 #pragma mark - Overridden Instance Methods
 
@@ -210,6 +222,8 @@
 }
 
 - (void)_processError:(NSError *)error {
+    
+    os_log_error(magnometer_manager_log, "Magnometer Error: %{public}@", error.localizedDescription);
     
     if ([self.delegate respondsToSelector:@selector(magnometerManager:didFailWithError:)]) {
         

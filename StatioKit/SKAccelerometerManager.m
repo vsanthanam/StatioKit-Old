@@ -10,6 +10,8 @@
 
 #import "SKAccelerometerManager.h"
 
+#import "sk_log.h"
+
 @interface SKAccelerometerManager ()
 
 @property (nonatomic, strong) NSOperationQueue *accelerometerQueue;
@@ -28,7 +30,17 @@
 @synthesize deviceMotionQueue = _deviceMotionQueue;
 @synthesize internalMotionManager = _internalMotionManager;
 
-#pragma mark = Overridden Instance Methods
+static os_log_t accelerometer_manager_log;
+
+#pragma mark - Overridden Class Methods
+
++ (void)initialize {
+    
+    accelerometer_manager_log = sk_log_create("SKAccelerometerManager");
+    
+}
+
+#pragma mark - Overridden Instance Methods
 
 - (instancetype)init {
     
@@ -182,6 +194,8 @@
 
 - (void)_processError:(NSError *)error {
  
+    os_log_error(accelerometer_manager_log, "Accelerometer Error: %{public}@", error.localizedDescription);
+    
     if ([self.delegate respondsToSelector:@selector(accelerometerManager:didFailWithError:)]) {
         
         [self.delegate accelerometerManager:self

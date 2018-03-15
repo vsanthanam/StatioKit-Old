@@ -10,6 +10,8 @@
 
 #import "SKGyroscopeManager.h"
 
+#import "sk_log.h"
+
 @interface SKGyroscopeManager ()
 
 @property (nonatomic, strong) NSOperationQueue *gyroscopeQueue;
@@ -20,6 +22,8 @@
 
 @implementation SKGyroscopeManager
 
+static os_log_t gyroscope_manager_log;
+
 @synthesize delegate = _delegate;
 @synthesize rawRotationRate = _rawRotationRate;
 @synthesize unbiasedRotationRate = _unbiasedRotationRate;
@@ -27,6 +31,14 @@
 
 @synthesize gyroscopeQueue = _gyroscopeQueue;
 @synthesize internalMotionManager = _internalMotionManager;
+
+#pragma mark - Overridden Class Methods
+
++ (void)initialize {
+    
+    gyroscope_manager_log = sk_log_create("SKGyroscopeManager");
+    
+}
 
 #pragma mark - Overridden Instance Methods
 
@@ -198,6 +210,8 @@
 }
 
 - (void)_processError:(NSError *)error {
+    
+    os_log_error(gyroscope_manager_log, "Gyroscope Error: %{public}@", error.localizedDescription);
     
     if ([self.delegate respondsToSelector:@selector(gyroscopeManager:didFailWithError:)]) {
         

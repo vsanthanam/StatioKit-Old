@@ -10,7 +10,19 @@
 
 #import "SKMemoryInfo.h"
 
+#import "sk_log.h"
+
 @implementation SKMemoryInfo
+
+static os_log_t memory_info_log;
+
+#pragma mark - Overridden Class Methods
+
++ (void)initialize {
+    
+    memory_info_log = sk_log_create("SKMemoryInfo");
+    
+}
 
 #pragma mark - Public Class Methods
 
@@ -32,7 +44,7 @@
 
 - (NSUInteger)physicalMemory {
     
-    return  (NSUInteger)[[NSProcessInfo processInfo] physicalMemory];
+    return (NSUInteger)[[NSProcessInfo processInfo] physicalMemory];
 
 }
 
@@ -46,6 +58,8 @@
     vm_statistics_data_t vm_stat;
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
+        
+        os_log_info(memory_info_log, "Couldn't get free system memory");
         
         return 0.0f;
         
@@ -68,6 +82,8 @@
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
         
+        os_log_info(memory_info_log, "Couldn't get active system memory");
+        
         return 0.0f;
         
     }
@@ -88,6 +104,8 @@
     vm_statistics_data_t vm_stat;
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
+        
+        os_log_info(memory_info_log, "Couldn't get inactive system memory");
         
         return 0.0f;
         
@@ -110,6 +128,8 @@
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
         
+        os_log_info(memory_info_log, "Couldn't get wired system memory");
+        
         return 0.0f;
         
     }
@@ -131,6 +151,8 @@
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
         
+        os_log_info(memory_info_log, "Couldn't get system page ins");
+        
         return 0.0f;
         
     }
@@ -151,6 +173,8 @@
     vm_statistics_data_t vm_stat;
     
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
+        
+        os_log_info(memory_info_log, "Couldn't get system page outs");
         
         return 0.0f;
         

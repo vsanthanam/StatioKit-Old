@@ -13,7 +13,19 @@
 
 #import "SKDeviceInfo.h"
 
+#import "sk_log.h"
+
 @implementation SKDeviceInfo
+
+static os_log_t device_info_log;
+
+#pragma mark - Overridden Class Methods
+
++ (void)initialize {
+    
+    device_info_log = sk_log_create("SKDeviceInfo");
+    
+}
 
 #pragma mark - Public Class Methods
 
@@ -58,6 +70,8 @@
             modelName = @"iPod";
             
         } else {
+            
+            os_log_info(device_info_log, "Encountered Unknown Identifier %{public}@", modelName);
          
             modelName = @"Unknown";
             
