@@ -126,7 +126,7 @@ static os_log_t accelerometer_manager_log;
                 
             } else if (deviceMotion) {
                 
-                [self _processError:error];
+                [self _processDeviceMotion:deviceMotion];
                 
             }
             
@@ -164,7 +164,7 @@ static os_log_t accelerometer_manager_log;
 
 - (void)_processAccelerometerData:(CMAccelerometerData *)accelerometerData {
     
-    SKAccelerationSample sample = SKAccelerationSampleMake(accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z, accelerometerData.timestamp);
+    SKAccelerationSample sample = SKAccelerationSampleMake(accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
 
     _deviceAcceleration = sample;
 
@@ -179,7 +179,7 @@ static os_log_t accelerometer_manager_log;
 
 - (void)_processDeviceMotion:(CMDeviceMotion *)deviceMotion {
     
-    SKAccelerationSample sample = SKAccelerationSampleMake(deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z, deviceMotion.timestamp);
+    SKAccelerationSample sample = SKAccelerationSampleMake(deviceMotion.userAcceleration.x, deviceMotion.userAcceleration.y, deviceMotion.userAcceleration.z);
     
     _userAcceleration = sample;
     
@@ -207,13 +207,12 @@ static os_log_t accelerometer_manager_log;
 
 #pragma mark - C Functions
 
-SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z, NSTimeInterval timestamp) {
+SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z) {
     
     SKAccelerationSample sample;
     sample.x = x;
     sample.y = y;
     sample.z = z;
-    sample.timestamp = timestamp;
     
     return sample;
     

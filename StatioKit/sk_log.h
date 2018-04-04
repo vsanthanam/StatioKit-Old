@@ -9,12 +9,10 @@
 #ifndef sk_log_h
 #define sk_log_h
 
-#include <stdio.h>
-
-#endif /* sk_log_h */
-
 #import <os/log.h>
 
 os_log_t sk_log(void);
 
 os_log_t sk_log_create(const char * category);
+
+#endif /* sk_log_h */

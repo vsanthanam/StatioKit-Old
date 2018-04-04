@@ -10,7 +10,6 @@
 
 struct SKAccelerationSample {
     
-    NSTimeInterval timestamp;
     double x;
     double y;
     double z;
@@ -44,6 +43,6 @@ typedef struct SKAccelerationSample SKAccelerationSample;
 - (BOOL)startTrackingWithUpdateFrequency:(double)frequency;
 - (BOOL)stopTracking;
 
-SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z, NSTimeInterval timestamp);
+SKAccelerationSample SKAccelerationSampleMake(double x, double y, double z);
 
 @end

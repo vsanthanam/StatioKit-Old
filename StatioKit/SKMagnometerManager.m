@@ -121,7 +121,7 @@ static os_log_t magnometer_manager_log;
                                                         withHandler:magnometerHandler];
         
         CMDeviceMotionHandler deviceMotionHandler = ^(CMDeviceMotion *deviceMotion, NSError *error) {
-            
+                        
             if (error) {
                 
                 [self _processError:error];
