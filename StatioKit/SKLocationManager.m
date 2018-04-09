@@ -10,4 +10,36 @@
 
 @implementation SKLocationManager
 
+@synthesize delegate = _delegate;
+
+- (instancetype)init {
+    
+    self = [self initWithDelegate:nil];
+ 
+    return self;
+    
+}
+
+- (instancetype)initWithDelegate:(id<SKLocationManagerDelegate>)delegate {
+    
+    self = [super init];
+    
+    if (self) {
+        
+        _delegate = delegate;
+        
+    }
+    
+    return self;
+    
+}
+
+- (void)startTracking {
+    
+}
+
+- (void)stopTracking {
+    
+}
+
 @end
