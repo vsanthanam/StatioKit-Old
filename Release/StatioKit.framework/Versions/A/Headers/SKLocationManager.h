@@ -12,6 +12,12 @@ struct SKLocationSample {
     
     double lat;
     double lon;
+    double altitude;
+    NSInteger floor;
+    double horizontalAccuracy;
+    double verticalAccuracy;
+    double speed;
+    double course;
 
 };
 
@@ -19,10 +25,11 @@ typedef struct SKLocationSample SKLocationSample;
 
 @class SKLocationManager;
 
-@protocol SKLocationManagerDelegate
+@protocol SKLocationManagerDelegate<NSObject>
 
 @optional
 
+- (void)locationManagerFailedToStartUpdating:(nonnull SKLocationManager *)manager;
 - (void)locationManager:(nonnull SKLocationManager *)manager didRecieveLocationSample:(SKLocationSample)locationSample;
 
 @end
@@ -30,10 +37,13 @@ typedef struct SKLocationSample SKLocationSample;
 @interface SKLocationManager : NSObject
 
 @property (weak, nullable) id<SKLocationManagerDelegate> delegate;
+@property (nonatomic, assign, readonly) SKLocationSample locationSample;
 
 - (nullable instancetype)initWithDelegate:(nullable id<SKLocationManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
 
 - (void)startTracking;
 - (void)stopTracking;
+
+SKLocationSample SKLocationSampleMake(double lat, double lon, double altitude, NSInteger floor, double horizontalAccuracy, double verticalAccuracy, double speed, double course);
 
 @end
