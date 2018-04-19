@@ -186,30 +186,4 @@ static os_log_t memory_info_log;
     
 }
 
-NSString * NSStringFromBytes(NSUInteger bytes) {
-    
-    if (bytes < 1024) {
-        
-        return [NSString stringWithFormat:@"%lu Bytes", (unsigned long)bytes];
-        
-    } else if (bytes < (1024 * 1024)) {
-        
-        double kb = ((double)bytes) / 1024.0f;
-        
-        return [NSString stringWithFormat:@"%.2f kB", kb];
-        
-    } else if (bytes < (1024 * 1024 * 1024)) {
-        
-        double mb = ((double)bytes) / (1024.0f * 1024.0f);
-        
-        return [NSString stringWithFormat:@"%.2f MB", mb];
-        
-    }
-    
-    double gb = ((double)bytes) / (1024.0f * 1024.0f * 1024.0f);
-    
-    return [NSString stringWithFormat:@"%.2f GB", gb];
-    
-}
-
 @end
