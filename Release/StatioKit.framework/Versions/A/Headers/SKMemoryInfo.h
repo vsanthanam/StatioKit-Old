@@ -20,6 +20,4 @@
 
 + (nullable instancetype)sharedMemoryInfo;
 
-NSString * _Nonnull NSStringFromBytes(NSUInteger bytes);
-
 @end
