@@ -24,6 +24,8 @@
 @property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *WLANNetmaskAddress;
 @property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *WLANBroadcastAddress;
 @property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *WLANRouterAddress;
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *WLANSSID;
+@property (NS_NONATOMIC_IOSONLY, readonly, nullable) NSString *WLANBSSID;
 
 + (nullable instancetype)sharedNetworkInfo;
 

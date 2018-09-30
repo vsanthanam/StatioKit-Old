@@ -12,6 +12,7 @@
 @import Darwin.POSIX.ifaddrs;
 @import Darwin.POSIX.ioctl;
 @import Darwin.sys.sysctl;
+@import SystemConfiguration.CaptiveNetwork;
 
 #import "SKNetworkInfo.h"
 
@@ -727,6 +728,36 @@
     }
 
     return RouterIP;
+    
+}
+
+- (NSString *)WLANSSID {
+ 
+    NSArray *interFaceNames = (__bridge_transfer id)CNCopySupportedInterfaces();
+    
+    for (NSString *name in interFaceNames) {
+        
+        NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)name);
+        return info[@"SSID"];
+        
+    }
+    
+    return nil;
+    
+}
+
+- (NSString *)WLANBSSID {
+    
+    NSArray *interFaceNames = (__bridge_transfer id)CNCopySupportedInterfaces();
+    
+    for (NSString *name in interFaceNames) {
+        
+        NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)name);
+        return info[@"BSSID"];
+        
+    }
+    
+    return nil;
     
 }
 
