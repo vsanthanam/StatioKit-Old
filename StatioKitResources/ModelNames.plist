@@ -152,5 +152,11 @@
 	<string>iPod touch Gen. 5</string>
 	<key>iPod7,1</key>
 	<string>iPod touch Gen. 6</string>
+	<key>iPhone11,2</key>
+	<string>iPhone XS</string>
+	<key>iPhone11,4</key>
+	<string>iPhone XS Max</string>
+	<key>iPhone11,8</key>
+	<string>iPhone XR</string>
 </dict>
 </plist>
